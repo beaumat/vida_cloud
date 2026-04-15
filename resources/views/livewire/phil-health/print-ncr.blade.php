@@ -89,6 +89,8 @@
             <li>Ang pahintulot na ito ay mananatiling may bisa hanggang hindi ko binabawi sa pamamagitan ng isang nakasulat na abiso sa PhilHealth NCR.</li>
         </ol>
 
+        <br>
+
           <div style="font-style:italic; font-size:15px;">
             (I understand that my BPN contains sensitive information. I acknowledge that providing
             incorrect contact details may result in non-receipt of the notice. I agree that PhilHealth
