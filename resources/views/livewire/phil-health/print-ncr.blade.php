@@ -78,7 +78,7 @@
 
     <!-- Section II -->
     <div style="margin-bottom:16px; text-align:justify; font-family: Arial, Helvetica, sans-serif;">
-        <div style="font-weight:bold; font-size:15px; margin-bottom:15px;">
+        <div style="font-weight:bold; font-size:1px; margin-bottom:8px;">
             II. PAGSANG-AYON AT PAGKILALA (AGREEMENT AND ACKNOWLEDGMENT):
         </div>
 
