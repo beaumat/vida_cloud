@@ -103,7 +103,7 @@
     <!-- Signature -->
     <div style="margin-top:22px; font-family: Arial, Helvetica, sans-serif;">
         <div style="margin-bottom:16px;">
-            <div style="width:280px; border-bottom:1px solid #000; margin-left:auto; margin-bottom:4px;"></div>
+            <div style="width:280px; border-bottom:1px solid #000; margin-left:4px; margin-bottom:4px;"></div>
             <div style="text-align:left; font-size:12px;">
                 LAGDA NG MIYEMBRO / KINATAWAN (Signature of Member / Authorized Representative)
             </div>
