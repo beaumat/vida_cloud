@@ -136,7 +136,7 @@
 
         <!-- PIN -->
         <span><b>PhilHealth ID Number (PIN):</b></span>
-        <span style="flex:1; border-bottom:1px solid #000; height:14px;"></span>
+        <span style="flex:1; border-bottom:1px solid #000; height:14px;">{{ $PIN }}</span>
 
         <!-- Date -->
         <span style="margin-left:20px;"><b>Petsa (Date):</b></span>
