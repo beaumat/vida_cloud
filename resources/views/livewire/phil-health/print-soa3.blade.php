@@ -122,7 +122,7 @@
                     </div>
                 </div>
                 <div class="col-12 text-center" @if ($PRE_SIGN_DATA) style="opacity: 0.0" @endif>
-                    <b class="text-lg">SUMMARY OF FEES</b>
+                    <b class="text-lg">SUMMARY OF FEES asdasdas</b>
                 </div>
 
                 @livewire('PhilHealth.PrintSummaryLuzon', ['ID' => $PRINT_ID, 'PRE_SIGN_DATA' => $PRE_SIGN_DATA, 'PATIENT_ID' => $PATIENT_ID])
