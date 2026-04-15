@@ -104,7 +104,7 @@
    <div style="margin-top:24px; font-family: Arial, Helvetica, sans-serif;">
 
     <!-- Signature line (TOP) -->
-    <div style="width:400px; border-bottom:1px solid #000; margin:0 auto 6px auto;"></div>
+    <div style="width:350px; border-bottom:1px solid #000; margin:0 auto 6px auto;"></div>
 
     <!-- Label -->
     <div style="text-align:left; margin-bottom:14px; font-size:13px;">
