@@ -78,7 +78,7 @@
 
     <!-- Section II -->
     <div style="margin-bottom:16px; text-align:justify; font-family: Arial, Helvetica, sans-serif;">
-        <div style="font-weight:bold; font-size:1px; margin-bottom:8px;">
+        <div style="font-weight:bold; font-size:15px; margin-bottom:8px;">
             II. PAGSANG-AYON AT PAGKILALA (AGREEMENT AND ACKNOWLEDGMENT):
         </div>
 
@@ -88,8 +88,7 @@
             <li style="margin-bottom:5px;">Sumasang-ayon ako na ang PhilHealth ay walang pananagutan kung ang impormasyon ay mabasa ng ibang tao dahil sa maling numerong naibigay o kung ang aking mobile device/email account ay hindi ligtas.</li>
             <li>Ang pahintulot na ito ay mananatiling may bisa hanggang hindi ko binabawi sa pamamagitan ng isang nakasulat na abiso sa PhilHealth NCR.</li>
         </ol>
-
-        <br>
+        
 
           <div style="font-style:italic; font-size:15px;">
             (I understand that my BPN contains sensitive information. I acknowledge that providing
@@ -105,23 +104,27 @@
     <!-- Signature -->
    <div style="margin-top:24px; font-family: Arial, Helvetica, sans-serif;">
 
-    <!-- Signature line (TOP) -->
-    <div style="text-align:left; margin-bottom:14px; font-size:13px;">
-    
-    <b>LAGDA NG MIYEMBRO / KINATAWAN</b>
+    <div style="display:flex; align-items:center; font-size:14px;">
 
-    <!-- Wrapper for line + italic text -->
-    <span style="display:inline-block; margin-left:6px;">
-        
-        <!-- Line directly above -->
-        <div style="width:260px; border-top:1px solid #000; margin-bottom:2px;"></div>
+        <!-- Main label -->
+        <b style="margin-right:6px;">
+            LAGDA NG MIYEMBRO / KINATAWAN
+        </b>
 
-        <!-- Italic text -->
-        <span style="font-style:italic;">
-            (Signature of Member / Authorized Representative)
+        <!-- Italic + line wrapper -->
+        <span style="display:flex; align-items:center; flex:1; gap:6px;">
+
+            <!-- Italic text -->
+            <span style="font-style:italic;">
+                (Signature of Member / Authorized Representative)
+            </span>
+
+            <!-- Line extending to the right -->
+            <span style="flex:1; border-bottom:1px solid #000; height:12px;"></span>
+
         </span>
 
-    </span>
+    </div>
 
 </div>
 
