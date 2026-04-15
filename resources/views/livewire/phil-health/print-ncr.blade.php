@@ -88,8 +88,8 @@
             <li style="margin-bottom:5px;">Sumasang-ayon ako na ang PhilHealth ay walang pananagutan kung ang impormasyon ay mabasa ng ibang tao dahil sa maling numerong naibigay o kung ang aking mobile device/email account ay hindi ligtas.</li>
             <li>Ang pahintulot na ito ay mananatiling may bisa hanggang hindi ko binabawi sa pamamagitan ng isang nakasulat na abiso sa PhilHealth NCR.</li>
         </ol>
-<div style="margin-top:24px; font-family: Arial, Helvetica, sans-serif;font-size:12px">
- <div  style="margin-bottom:16px; text-align:justify; font-family: Arial, Helvetica, sans-serif;font-style:italic;">
+
+          <div style="font-style:italic; font-size:15px;">
             (I understand that my BPN contains sensitive information. I acknowledge that providing
             incorrect contact details may result in non-receipt of the notice. I agree that PhilHealth
             shall not be held liable for unauthorized access to the information if the provided contact
@@ -97,7 +97,6 @@
             until revoked in writing.)
         </div>
 
-</div>
        
     </div>
 
