@@ -61,31 +61,31 @@
                 </span>
             </div>
 
-            <div style="margin-bottom:6px;">
+            <div style="margin-bottom:6px;font-size:12px">
                 [ ] <b>EMAIL</b>
-                <span style="margin-left:6px;">Email Address:</span>
-                <span style="display:inline-block; min-width:250px; border-bottom:1px solid #000;">
+                <span style="margin-left:6px;font-size:12px">Email Address:</span>
+                <span style="display:inline-block; min-width:250px; border-bottom:1px solid #000;font-size:12px">
                    {{ $EMAIL }}
                 </span>
             </div>
 
-            <div>
+            <div style="margin-bottom:6px;font-size:12px">
                 [ ] <b>Others:</b>
-                <span style="display:inline-block; min-width:300px; border-bottom:1px solid #000;">&nbsp;</span>
+                <span style="display:inline-block; min-width:300px; border-bottom:1px solid #000;font-size:12px">&nbsp;</span>
             </div>
         </div>
     </div>
 
     <!-- Section II -->
     <div style="margin-bottom:16px; text-align:justify; font-family: Arial, Helvetica, sans-serif;">
-        <div style="font-weight:bold; font-size:13px; margin-bottom:8px;">
+        <div style="font-weight:bold; font-size:15px; margin-bottom:8px;">
             II. PAGSANG-AYON AT PAGKILALA (AGREEMENT AND ACKNOWLEDGMENT):
         </div>
 
         <ol style="margin:0; padding-left:24px;">
-            <li style="margin-bottom:5px;">Nauunawaan ko na ang aking BPN ay naglalaman ng impormasyon tungkol sa aking health insurance benefits.</li>
-            <li style="margin-bottom:5px;">Kinikilala ko na ang pagbibigay ng maling impormasyon (cellphone number o email) ay maaaring maging sanhi ng hindi ko pagtanggap ng abiso.</li>
-            <li style="margin-bottom:5px;">Sumasang-ayon ako na ang PhilHealth ay walang pananagutan kung ang impormasyon ay mabasa ng ibang tao dahil sa maling numerong naibigay o kung ang aking mobile device/email account ay hindi ligtas.</li>
+            <li style="margin-bottom:5px;font-size:12px">Nauunawaan ko na ang aking BPN ay naglalaman ng impormasyon tungkol sa aking health insurance benefits.</li>
+            <li style="margin-bottom:5px;font-size:12px">Kinikilala ko na ang pagbibigay ng maling impormasyon (cellphone number o email) ay maaaring maging sanhi ng hindi ko pagtanggap ng abiso.</li>
+            <li style="margin-bottom:5px;font-size:12px">Sumasang-ayon ako na ang PhilHealth ay walang pananagutan kung ang impormasyon ay mabasa ng ibang tao dahil sa maling numerong naibigay o kung ang aking mobile device/email account ay hindi ligtas.</li>
             <li>Ang pahintulot na ito ay mananatiling may bisa hanggang hindi ko binabawi sa pamamagitan ng isang nakasulat na abiso sa PhilHealth NCR.</li>
         </ol>
 
