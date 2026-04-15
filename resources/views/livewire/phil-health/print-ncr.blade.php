@@ -27,12 +27,12 @@
 
     <!-- Intro -->
     <div style="margin-bottom:12px; text-align:justify; font-family: Arial, Helvetica, sans-serif;">
-        <div style="font-weight:bold; font-size:14px; margin-bottom:8px;">
+        <div style="font-weight:bold; font-size:16px; margin-bottom:8px;">
             PAHINTULOT PARA SA PAGPAPADALA NG BENEFIT PAYMENT NOTICE (BPN) SA<br>
             PAMAMAGITAN NG SMS AT/O EMAIL
         </div>
 
-        <div style="margin-bottom:6px;">
+        <div style="margin-bottom:6px;font-size:16px;">
             Sa pamamagitan nito, malaya at boluntaryo kong ibinibigay ang aking pahintulot sa PhilHealth
             Regional Office NCR na padalhan ako ng impormasyon tungkol sa aking Benefit Payment
             Notice (BPN) o ang detalye ng bayad sa aking confinement/availment gamit ang sumusunod na
