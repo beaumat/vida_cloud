@@ -107,7 +107,7 @@
     <div style="width:420px; border-bottom:1px solid #000; margin:0 auto 6px auto;"></div>
 
     <!-- Label -->
-    <div style="text-align:center; margin-bottom:14px; font-size:13px;">
+    <div style="text-align:left; margin-bottom:14px; font-size:13px;">
         <b>LAGDA NG MIYEMBRO / KINATAWAN</b>
         <span style="font-style:italic;">
             (Signature of Member / Authorized Representative)
