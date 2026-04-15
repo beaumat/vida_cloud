@@ -232,7 +232,7 @@
                                             id="custom-tabs-four-soa-tab" wire:click="SelectTab('soa')"
                                             data-toggle="pill" href="#custom-tabs-four-soa" role="tab"
                                             aria-controls="custom-tabs-four-soa" aria-selected="true">
-                                            Summary of Fees asas
+                                            Summary of Fees
                                         </a>
                                     </li>
                                     <li class="nav-item">

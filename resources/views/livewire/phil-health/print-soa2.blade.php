@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="col-12 text-center" @if ($PRE_SIGN_DATA) style="opacity: 0.0" @endif>
-                    <b class="text-xl">SUMMARY OF FEES</b>
+                    <b class="text-xl">SUMMARY OF FEESasdasd</b>
                 </div>
                 <div class="col-12 mt-2" id="details" @if ($PRE_SIGN_DATA) style="opacity: 0.0" @endif>
                     <div class="row top-line right-line left-line">
