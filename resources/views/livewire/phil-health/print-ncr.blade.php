@@ -130,19 +130,21 @@
     </div>
 
     <!-- PIN and Date -->
-    <div style="display:flex; justify-content:space-between; align-items:center;">
-        
-        <div style="width:48%;">
-            <b>PhilHealth ID Number (PIN):</b>
-            <span style="display:inline-block; width:65%; border-bottom:1px solid #000;"></span>
-        </div>
+    <div style="margin-top:8px; font-size:14px;">
 
-        <div style="width:48%; text-align:right;">
-            <b>Petsa (Date):</b>
-            <span style="display:inline-block; width:60%; border-bottom:1px solid #000;"></span>
-        </div>
+    <div style="display:flex; align-items:center; gap:10px;">
+
+        <!-- PIN -->
+        <span><b>PhilHealth ID Number (PIN):</b></span>
+        <span style="flex:1; border-bottom:1px solid #000; height:14px;"></span>
+
+        <!-- Date -->
+        <span style="margin-left:20px;"><b>Petsa (Date):</b></span>
+        <span style="flex:1; border-bottom:1px solid #000; height:14px;"></span>
 
     </div>
+
+</div>
 
 </div>
     </div>
