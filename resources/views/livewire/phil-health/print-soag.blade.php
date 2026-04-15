@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col-6">
                             <b class="bottom-line2"
                                 @if ($HEADER) style="opacity: 0.0" @endif>PHILHEALTH ACCREDITED:</b>
                             <div class="row mt-1">
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="col-12 text-center mt-1" @if ($PRE_SIGN_DATA) style="opacity: 0.0" @endif>
-                    <b class="text-lg">SUMMARY OF FEES</b>
+                    <b class="text-lg">SUMMARY OF FEES sad</b>
                 </div>
                 <div class="col-12 mt-1 text-sm" id="details"
                     @if ($PRE_SIGN_DATA) style="opacity: 0.0" @endif>
