@@ -13,7 +13,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     {{ $ID == 0 ? 'Create' : '' }}
-                                    <a class="text-white" href="{{ route('vendorsbills') }}"> Bills sad </a>
+                                    <a class="text-white" href="{{ route('vendorsbills') }}"> Bills </a>
                                 </div>
                                 <div class="col-sm-6 text-right">
                                     @if ($ID > 0)
@@ -95,7 +95,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <livewire:text-input name="NOTES asd" titleName="Notes"
+                                                    <livewire:text-input name="NOTES" titleName="Notes"
                                                         isDisabled="{{ !$Modify }}" wire:model='NOTES'
                                                         :vertical="false" />
                                                 </div>
