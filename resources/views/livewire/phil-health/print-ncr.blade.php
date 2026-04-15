@@ -141,7 +141,7 @@
 
         <!-- Date -->
         <span style="margin-left:20px;"><b>Petsa (Date):</b></span>
-        <span style="flex:1; border-bottom:1px solid #000; height:14px;"></span>
+        <span style="flex:1; border-bottom:1px solid #000; height:14px;">{{ $DATE_DISCHARGED }}</span>
 
     </div>
 
