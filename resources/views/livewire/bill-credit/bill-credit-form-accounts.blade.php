@@ -5,7 +5,7 @@
         <thead class="text-xs bg-sky">
             <tr>
                 <th class="col-1">Account Code</th>
-                <th class="col-3">Account Name asda</th>
+                <th class="col-3">Account Name</th>
                 <th class="col-1">Amount</th>
                 <th class="col-1 text-center">Tax</th>
                 <th class="col-3">Particular</th>
