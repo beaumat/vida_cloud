@@ -104,29 +104,25 @@
     <!-- Signature -->
    <div style="margin-top:24px; font-family: Arial, Helvetica, sans-serif;">
 
-    <div style="display:flex; align-items:center; font-size:14px;">
+    <!-- Signature line (TOP) -->
+            <div style="text-align:left; margin-bottom:14px; font-size:13px;">
+            
+            <b>LAGDA NG MIYEMBRO / KINATAWAN</b>
 
-        <!-- Main label -->
-        <b style="margin-right:6px;">
-            LAGDA NG MIYEMBRO / KINATAWAN
-        </b>
+            <!-- Wrapper for line + italic text -->
+            <span style="display:inline-block; margin-left:6px;">
+                
+                <!-- Line directly above -->
+                <div style="width:260px; border-top:1px solid #000; margin-bottom:2px;"></div>
 
-        <!-- Italic + line wrapper -->
-        <span style="display:flex; align-items:center; flex:1; gap:6px;">
+                <!-- Italic text -->
+                <span style="font-style:italic;">
+                    (Signature of Member / Authorized Representative)
+                </span>
 
-            <!-- Italic text -->
-            <span style="font-style:italic;">
-                (Signature of Member / Authorized Representative)
             </span>
 
-            <!-- Line extending to the right -->
-            <span style="flex:1; border-bottom:1px solid #000; height:12px;"></span>
-
-        </span>
-
-    </div>
-
-</div>
+ </div>
 
     <!-- Name -->
     <div style="margin-bottom:10px;">
