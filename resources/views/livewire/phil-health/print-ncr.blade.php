@@ -12,80 +12,84 @@
         </div> --}}
     </div>
 
-      <div style="text-align: right; font-weight: bold; font-size: 11px; margin-bottom: 4px;">
-        ANNEX A
-    </div>
-
-    <!-- TITLE -->
-    <div style="text-align: center; margin-bottom: 10px;">
-        <div style="font-weight: bold; font-size: 14px;">
-            PHILHEALTH NCR CONSENT FORM
+    <div class="text-center mb-6">
+        <h1 class="font-bold text-lg mb-4">PHILHEALTH NCR CONSENT FORM</h1>
+        <div class="border-y border-black py-3">
+            
         </div>
     </div>
 
-    <!-- BODY -->
-    <div style="margin-bottom: 10px; text-align: justify;">
-        <div style="font-weight: bold; margin-bottom: 6px;">
-            PAHINTULOT PARA SA PAGPAPADALA NG BENEFIT PAYMENT NOTICE (BPN) SA<br>
-            PAMAMAGITAN NG SMS AT/O EMAIL
-        </div>
-
-        <div style="margin-bottom: 6px;">
-            Sa pamamagitan nito, malaya at boluntaryo kong ibinibigay ang aking pahintulot sa PhilHealth
-            Regional Office NCR na padalhan ako ng impormasyon tungkol sa aking Benefit Payment
-            Notice (BPN) o ang detalye ng bayad sa aking confinement/availment gamit ang sumusunod na
+    <div class="mb-6 text-justify">
+        <p class="mb-2">
+             <b>PAHINTULOT PARA SA PAGPAPADALA NG BENEFIT PAYMENT NOTICE (BPN) SA<br>
+                PAMAMAGITAN NG SMS AT/O EMAIL</b>
+            
+        </p>
+        <p class="mb-2">
+            Sa pamamagitan nito, malaya at boluntaryo kong ibinibigay ang aking pahintulot sa<b> PhilHealth
+            Regional Office NCR</b> na padalhan ako ng impormasyon tungkol sa aking <b>Benefit Payment
+            Notice (BPN)</b> o ang detalye ng bayad sa aking confinement/availment gamit ang sumusunod na
             pamamaraan:
-        </div>
-
-        <div style="font-style: italic; font-size: 10px;">
-            (I hereby freely and voluntarily authorize PhilHealth Regional Office NCR to send information
+        </p>
+        <p class="italic text-gray-700">
+            (I hereby freely and voluntarily authorize  <b>PhilHealth Regional Office NCR</b> to send information
             regarding my Benefit Payment Notice (BPN) or the details of my benefit payment for my
             confinement/availment through the following methods:)
+        </p>
+    </div>
+
+    <div class="mb-8">
+        <h6 class="font-bold italic border-b border-black mb-4">  I. PAGPILI NG PAMAMARAAN (PLEASE MARK YOUR CHOICE):</h6>
+        <div class="space-y-4 ml-6">
+
+            
+           
+                        <div class="flex items-center">
+                             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                <span class="ml-2"><b>SMS / TEXT MESSAGE</b> Cellphone Number:  <u>{{ $MOBILE_NO }}</u> </span>
+                                
+                            </div>
+
+                              <div class="flex items-center">
+                             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                <span class="ml-2"><b>EMAIL</b> Email Address: <u>{{ $EMAIL }}</u></span>
+                                
+                            </div>
+
+                              <div class="flex items-center">
+                             <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                <span class="ml-2"><b>Others:</b>_______________________________</span>
+                                
+                            </div>
+
+  
+
+
+
+           
+            {{-- <div class="flex items-center">
+             
+                <span class="ml-2">Email Address:</span>&nbsp; {{ $EMAIL }}
+            </div>
+            <div class="flex items-center">
+                <span>Others:</span>
+            </div> --}}
         </div>
     </div>
 
-    <!-- SECTION I -->
-    <div style="margin-bottom: 12px;">
-        <div style="font-weight: bold; margin-bottom: 6px;">
-            I. PAGPILI NG PAMAMARAAN (PLEASE MARK YOUR CHOICE):
-        </div>
 
-        <div style="margin-left: 16px; line-height: 1.4;">
-            <div style="margin-bottom: 4px;">
-                [ ] <b>SMS / TEXT MESSAGE</b> Cellphone Number:
-                <span style="display:inline-block; border-bottom:1px solid black; width:260px;">
-                    {{ $MOBILE_NO ?? '' }}
-                </span>
-            </div>
-
-            <div style="margin-bottom: 4px;">
-                [ ] <b>EMAIL</b> Email Address:
-                <span style="display:inline-block; border-bottom:1px solid black; width:285px;">
-                    {{ $EMAIL ?? '' }}
-                </span>
-            </div>
-
-            <div>
-                [ ] <b>Others:</b>
-                <span style="display:inline-block; border-bottom:1px solid black; width:360px;"></span>
-            </div>
-        </div>
-    </div>
-
-    <!-- SECTION II -->
-    <div style="margin-bottom: 12px; text-align: justify;">
-        <div style="font-weight: bold; margin-bottom: 6px;">
-            II. PAGSANG-AYON AT PAGKILALA (AGREEMENT AND ACKNOWLEDGMENT):
-        </div>
-
-        <ol style="margin-left: 18px; padding-left: 6px;">
-            <li style="margin-bottom: 3px;">Nauunawaan ko na ang aking BPN ay naglalaman ng impormasyon tungkol sa aking health insurance benefits.</li>
-            <li style="margin-bottom: 3px;">Kinikilala ko na ang pagbibigay ng maling impormasyon (cellphone number o email) ay maaaring maging sanhi ng hindi ko pagtanggap ng abiso.</li>
-            <li style="margin-bottom: 3px;">Sumasang-ayon ako na ang PhilHealth ay walang pananagutan kung ang impormasyon ay mabasa ng ibang tao dahil sa maling numerong naibigay o kung ang aking mobile device/email account ay hindi ligtas.</li>
+     <br>
+    <div class="mb-10">
+        
+        <h6 class="font-bold italic border-b border-black mb-10">  II. PAGSANG-AYON AT PAGKILALA (AGREEMENT AND ACKNOWLEDGMENT):</h6>
+        <ol class="list-decimal ml-8 space-y-2 text-justify">
+            
+            <li>Nauunawaan ko na ang aking BPN ay naglalaman ng impormasyon tungkol sa aking health insurance benefits.</li>
+            <li>Kinikilala ko na ang pagbibigay ng maling impormasyon (cellphone number o email) ay maaaring maging sanhi ng hindi ko pagtanggap ng abiso.</li>
+            <li>Sumasang-ayon ako na ang PhilHealth ay walang pananagutan kung ang impormasyon ay mabasa ng ibang tao dahil sa maling numerong naibigay o kung ang aking mobile device/email account ay hindi ligtas.</li>
             <li>Ang pahintulot na ito ay mananatiling may bisa hanggang hindi ko binabawi sa pamamagitan ng isang nakasulat na abiso sa PhilHealth NCR.</li>
         </ol>
-
-        <div style="font-style: italic; font-size: 10px; margin-top: 6px;">
+        <div class="mt-4 italic text-gray-700 text-xs leading-relaxed px-4">
             (I understand that my BPN contains sensitive information. I acknowledge that providing
             incorrect contact details may result in non-receipt of the notice. I agree that PhilHealth
             shall not be held liable for unauthorized access to the information if the provided contact
@@ -93,34 +97,7 @@
             until revoked in writing.)
         </div>
     </div>
-
-    <!-- SIGNATURE -->
-    <div style="margin-top: 20px;">
-        <div style="margin-bottom: 8px;">
-            LAGDA NG MIYEMBRO / KINATAWAN (Signature of Member / Authorized Representative)
-        </div>
-
-        <div style="margin-bottom: 8px;">
-            PANGALAN (PRINTED NAME):
-            <span style="display:inline-block; border-bottom:1px solid black; width:380px;">
-                {{ $MEMBER_LAST_NAME ?? '' }}, {{ $MEMBER_FIRST_NAME ?? '' }} {{ $MEMBER_MIDDLE_NAME ?? '' }}
-            </span>
-        </div>
-
-        <div>
-            PhilHealth ID Number (PIN):
-            <span style="display:inline-block; border-bottom:1px solid black; width:180px;">
-                {{ $PIN ?? '' }}
-            </span>
-
-            <span style="margin-left: 20px;">Petsa (Date):</span>
-            <span style="display:inline-block; border-bottom:1px solid black; width:150px;">
-                {{ $DATE_DISCHARGED ?? '' }}
-            </span>
-        </div>
-    </div>
-
-</div>
+<br>
 
 
                      
