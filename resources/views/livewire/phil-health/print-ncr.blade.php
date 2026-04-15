@@ -113,7 +113,7 @@
             <span style="display:inline-block; margin-left:6px;">
                 
                 <!-- Line directly above -->
-                <div style="width:350px; border-top:1px solid #000; margin-bottom:2px;"></div>
+                <div style="width:300px; border-top:1px solid #000; margin-bottom:2px;"></div>
 
                 <!-- Italic text -->
                 <span style="font-style:italic;">
