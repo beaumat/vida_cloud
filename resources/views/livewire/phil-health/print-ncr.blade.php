@@ -126,7 +126,7 @@
     <!-- Name -->
     <div style="margin-bottom:10px;">
         <b>PANGALAN (PRINTED NAME):</b>
-        <span style="display:inline-block; width:65%; border-bottom:1px solid #000;"></span>
+        <span style="display:inline-block; width:65%; border-bottom:1px solid #000;"><b>{{ $MEMBER_LAST_NAME }}, {{ $MEMBER_FIRST_NAME }} {{ $MEMBER_MIDDLE_NAME }}</b></span>
     </div>
 
     <!-- PIN and Date -->
@@ -136,7 +136,7 @@
 
         <!-- PIN -->
         <span><b>PhilHealth ID Number (PIN):</b></span>
-        <span style="flex:1; border-bottom:1px solid #000; height:14px;">{{ $PIN }}</span>
+        <span style="flex:1; border-bottom:1px solid #000; height:14px;"><b>{{ $PIN }}</b></span>
 
         <!-- Date -->
         <span style="margin-left:20px;"><b>Petsa (Date):</b></span>
