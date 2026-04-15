@@ -1,0 +1,186 @@
+<div>
+    @livewire('alert-layout', ['errors' => $errors->any() ? $errors->all() : '', 'message' => session('message'), 'error' => session('error')])
+
+    <table class="table table-sm table-bordered table-hover">
+        <thead class="text-xs bg-sky">
+            <tr>
+                <th class="col-1">Account Code</th>
+                <th class="col-3">Account Name</th>
+                <th class="col-1">Amount</th>
+                <th class="col-1 text-center">Tax</th>
+                <th class="col-3">Particular</th>
+                <th class="col-2">Class</th>
+                @if ($STATUS == $openStatus)
+                    <th class="text-center col-1">Action</th>
+                @endif
+            </tr>
+        </thead>
+        <tbody class="text-xs">
+            @foreach ($expenses as $list)
+                <tr>
+                    <td>{{ $list->CODE }}</td>
+                    <td>{{ $list->NAME }}</td>
+                    <td class="text-right">
+                        @if ($editExpensesId === $list->ID)
+                            <input type="number" class="form-control form-control-sm" wire:model='lineAmount'
+                                name="lineAmount" />
+                        @else
+                            {{ number_format($list->AMOUNT, 2) }}
+                        @endif
+                    </td>
+                    <td class="text-center">
+
+                        @if ($editExpensesId === $list->ID)
+                            <input type="checkbox" class="text-lg mt-2" wire:model='lineTaxable' name="lineTax" />
+                        @else
+                            @if ($list->TAXABLE)
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                            @endif
+                        @endif
+                    </td>
+                    <td>
+                        @if ($editExpensesId === $list->ID)
+                            <input wire:model='lineParticulars' name="partiuclaredit" type="text"
+                                class="form-control form-control-sm" />
+                        @else
+                            {{ $list->PARTICULARS }}
+                        @endif
+
+                    </td>
+                    <td>
+                        @if ($editExpensesId === $list->ID)
+                            <select wire:model='lineClassId' name="CLASS_ID_Edit"
+                                class="text-sm form-control form-control-sm">
+                                <option value="0"></option>
+                                @foreach ($classList as $listitem)
+                                    <option value="{{ $listitem->ID }}">{{ $listitem->NAME }}</option>
+                                @endforeach
+                            </select>
+                        @else
+                            {{ $list->CLASS_NAME }}
+                        @endif
+                    </td>
+                    @if ($STATUS == $openStatus)
+                        <td class="text-center">
+                            @if ($editExpensesId === $list->ID)
+                                <button type="button" title="Update" id="updatebtn"
+                                    wire:click="updateExpenses({{ $list->ID }})" class="btn btn-success btn-xs">
+                                    <i class="fas fa-check" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" title="Cancel" id="cancelbtn" wire:click="cancelExpenses()"
+                                    class="btn btn-warning btn-xs">
+                                    <i class="fas fa-ban" aria-hidden="true"></i>
+                                </button>
+                            @else
+                                <button type="button" title="Edit" id="editbtn"
+                                    wire:click="editExpenses( {{ $list->ID }}, {{ $list->AMOUNT }} ,{{ $list->TAXABLE }},'{{ $list->PARTICULARS }}',{{ $list->CLASS_ID > 0 ? $list->CLASS_ID : 0 }})"
+                                    class="btn-info btn btn-xs">
+                                    <i class="fas fa-edit" aria-hidden="true"></i>
+                                </button>
+                                <button type="button" title="Delete" id="deletebtn"
+                                    wire:click='deleteExpenses({{ $list->ID }})'
+                                    wire:confirm="Are you sure you want to delete this?" class="btn btn-danger btn-xs">
+                                    <i class="fas fa-trash" aria-hidden="true"></i>
+                                </button>
+                            @endif
+                        </td>
+                    @endif
+                </tr>
+            @endforeach
+
+            {{-- INSERT FORM --}}
+            @if ($STATUS == $openStatus)
+                <form wire:submit.prevent='saveExpenses' wire:loading.attr='disabled'>
+                    <tr>
+                        <td>
+                            @if ($saveSuccess)
+                                @if ($codeBase)
+                                    <livewire:select-option name="ACCOUNT_ID1" titleName="Account Code"
+                                        :options="$acctCodeList" :zero="true" wire:model.live='ACCOUNT_ID'
+                                        isDisabled="{{ false }}" :vertical="false" :withLabel="false" />
+                                @else
+                                    <label class="mt-2"> {{ $ACCOUNT_CODE }}</label>
+                                @endif
+                            @else
+                                @if ($codeBase)
+                                    <livewire:select-option name="ACCOUNT_ID2" titleName="Account Code"
+                                        :options="$acctCodeList" :zero="true" wire:model.live='ACCOUNT_ID'
+                                        isDisabled="{{ false }}" :vertical="false" :withLabel="false" />
+                                @else
+                                    <label class="mt-2"> {{ $ACCOUNT_CODE }}</label>
+                                @endif
+                            @endif
+                        </td>
+                        <td>
+                            @if ($saveSuccess)
+                                @if (!$codeBase)
+                                    <livewire:select-option name="ACCOUNT_ID3" titleName="Account Description"
+                                        :options="$acctDescList" :zero="true" wire:model.live='ACCOUNT_ID'
+                                        isDisabled="{{ false }}" :vertical="false" :withLabel="false" />
+                                @else
+                                    <label class="mt-2"> {{ $ACCOUNT_DESCRIPTION }}</label>
+                                @endif
+                            @else
+                                @if (!$codeBase)
+                                    <livewire:select-option name="ACCOUNT_ID4" titleName="Account Description"
+                                        :options="$acctDescList" :zero="true" wire:model.live='ACCOUNT_ID'
+                                        isDisabled="{{ false }}" :vertical="false" :withLabel="false" />
+                                @else
+                                    <label class="mt-2"> {{ $ACCOUNT_DESCRIPTION }}</label>
+                                @endif
+                            @endif
+                        </td>
+                        <td>
+                            <input type="number" class="form-control form-control-sm text-right" name="AMOUNT"
+                                wire:model='AMOUNT' />
+                        </td>
+                        <td class="text-center">
+                            <input type="checkbox" class="text-lg" wire:model='TAXABLE' name="taxable"
+                                @if ($ACCOUNT_ID == 0) disabled @endif />
+                        </td>
+                        <td class="text-left">
+                            <input type="text" class="form-control form-control-sm" wire:model='PARTICULARS'
+                                name="PARTICULARS" />
+                        </td>
+                        <td>
+                            @if ($saveSuccess)
+                                @if (!$codeBase)
+                                    <livewire:select-option name="CLASS_ID1" titleName="" :options="$classList"
+                                        :zero="true" wire:model.live='CLASS_ID' :vertical="false"
+                                        isDisabled="{{ false }}" :withLabel="false" />
+                                @endif
+                            @else
+                                @if (!$codeBase)
+                                    <livewire:select-option name="CLASS_ID2" titleName="" :options="$classList"
+                                        :zero="true" wire:model.live='CLASS_ID' :vertical="false"
+                                        isDisabled="{{ false }}" :withLabel="false" />
+                                @endif
+                            @endif
+
+                        </td>
+                        <td>
+                            <div>
+                                <button type="submit" wire:loading.attr='hidden'
+                                    @if ($ACCOUNT_ID == 0) disabled @endif
+                                    class="text-white btn bg-sky btn-sm w-100">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                                <div wire:loading.delay>
+                                    <span class="spinner"></span>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                </form>
+            @endif
+
+        </tbody>
+
+    </table>
+    @if ($STATUS == $openStatus)
+        <livewire:custom-check-box name="codeBaseAcct" titleName="Use choose account code" wire:model.live='codeBase'
+            isDisabled="{{ false }}" />
+    @endif
+</div>
