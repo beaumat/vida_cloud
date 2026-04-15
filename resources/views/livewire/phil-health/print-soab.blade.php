@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="col-12">
 
-                                    <h5>LIFESTREAM DIALYSIS CENTER PHILS.</h5>
+                                    <h5>LIFESTREAM DIALYSIS CENTER OPC</h5>
                                     {{ $REPORT_HEADER_1 }} <br />
                                     {{ $REPORT_HEADER_2 }}<br />
                                     {{ $REPORT_HEADER_3 }}</b>
