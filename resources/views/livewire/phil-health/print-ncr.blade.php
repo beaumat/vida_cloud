@@ -101,36 +101,40 @@
     </div>
 
     <!-- Signature -->
-    <div style="margin-top:24px; font-family: Arial, Helvetica, sans-serif; text-align:center;">
+   <div style="margin-top:24px; font-family: Arial, Helvetica, sans-serif;">
 
-    <!-- Signature line ABOVE -->
+    <!-- Signature line (TOP) -->
     <div style="width:420px; border-bottom:1px solid #000; margin:0 auto 6px auto;"></div>
 
-    <!-- Label below line -->
-    <div style="font-size:12px;">
+    <!-- Label -->
+    <div style="text-align:center; margin-bottom:14px; font-size:13px;">
         <b>LAGDA NG MIYEMBRO / KINATAWAN</b>
-        <span style="font-style:italic;"> (Signature of Member / Authorized Representative)</span>
+        <span style="font-style:italic;">
+            (Signature of Member / Authorized Representative)
+        </span>
+    </div>
+
+    <!-- Name -->
+    <div style="margin-bottom:10px;">
+        <b>PANGALAN (PRINTED NAME):</b>
+        <span style="display:inline-block; width:65%; border-bottom:1px solid #000;"></span>
+    </div>
+
+    <!-- PIN and Date -->
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        
+        <div style="width:48%;">
+            <b>PhilHealth ID Number (PIN):</b>
+            <span style="display:inline-block; width:65%; border-bottom:1px solid #000;"></span>
+        </div>
+
+        <div style="width:48%; text-align:right;">
+            <b>Petsa (Date):</b>
+            <span style="display:inline-block; width:60%; border-bottom:1px solid #000;"></span>
+        </div>
+
     </div>
 
 </div>
-
-        <div style="margin-bottom:10px;">
-            PANGALAN (PRINTED NAME):
-            <span style="display:inline-block; min-width:360px; border-bottom:1px solid #000;">
-                {{ $MEMBER_LAST_NAME ?? '' }}, {{ $MEMBER_FIRST_NAME ?? '' }} {{ $MEMBER_MIDDLE_NAME ?? '' }}
-            </span>
-        </div>
-
-        <div>
-            PhilHealth ID Number (PIN):
-            <span style="display:inline-block; min-width:170px; border-bottom:1px solid #000;">
-                {{ $PIN ?? '' }}
-            </span>
-
-            <span style="margin-left:20px;">Petsa (Date):</span>
-            <span style="display:inline-block; min-width:140px; border-bottom:1px solid #000;">
-                {{ $DATE_DISCHARGED ?? '' }}
-            </span>
-        </div>
     </div>
 </div>
