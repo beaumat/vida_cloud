@@ -158,7 +158,7 @@
                         <td>
                             <div class="mt-1">
                                 <button type="button" wire:click='saveExpenses()' wire:loading.attr='hidden'
-                                    @if ($ACCOUNT_ID == 0) disabled @endif
+                                    @if ($ACCOUNT_ID != 0) disabled @endif
                                     class="text-white btn bg-sky btn-sm w-100">
                                     <i class="fas fa-plus"></i>
                                 </button>
