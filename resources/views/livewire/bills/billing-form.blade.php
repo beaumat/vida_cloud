@@ -95,7 +95,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <livewire:text-input name="NOTES" titleName="Notes"
+                                                    <livewire:text-input name="NOTES asd" titleName="Notes"
                                                         isDisabled="{{ !$Modify }}" wire:model='NOTES'
                                                         :vertical="false" />
                                                 </div>
