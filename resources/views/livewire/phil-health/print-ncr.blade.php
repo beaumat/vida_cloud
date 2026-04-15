@@ -39,7 +39,7 @@
             pamamaraan:
         </div>
 
-        <div style="font-style:italic; font-size:12px;">
+        <div style="font-style:italic; font-size:15px;">
             (I hereby freely and voluntarily authorize PhilHealth Regional Office NCR to send information
             regarding my Benefit Payment Notice (BPN) or the details of my benefit payment for my
             confinement/availment through the following methods:)
@@ -48,15 +48,15 @@
 
     <!-- Section I -->
     <div style="margin-bottom:14px; font-family: Arial, Helvetica, sans-serif;">
-        <div style="font-weight:bold; font-size:13px; margin-bottom:8px;">
+        <div style="font-weight:bold; font-size:15px; margin-bottom:8px;">
             I. PAGPILI NG PAMAMARAAN (PLEASE MARK YOUR CHOICE):
         </div>
 
         <div style="padding-left:20px;">
-            <div style="margin-bottom:6px;">
+            <div style="margin-bottom:6px;font-size:12px">
                 [ ] <b>SMS / TEXT MESSAGE</b>
                 <span style="margin-left:6px;">Cellphone Number:</span>
-                <span style="display:inline-block; min-width:230px; border-bottom:1px solid #000;">
+                <span style="display:inline-block; min-width:230px; border-bottom:1px solid #000;font-size:12px">
                     {{ $MOBILE_NO ?? '' }}
                 </span>
             </div>
