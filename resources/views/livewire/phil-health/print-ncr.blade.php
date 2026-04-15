@@ -113,7 +113,7 @@
                                 <div class="col-10">
                                     PANGALAN (PRINTED NAME) : <u>{{ $MEMBER_LAST_NAME }}, {{ $MEMBER_FIRST_NAME }} {{ $MEMBER_MIDDLE_NAME }}</u></div>
                                  <div class="col-6">
-                                    PhilHealth ID Number (PIN): <u>{{ $PIN }}</u>  </div> Petsa (Date): <u>{{ now()->format('m/d/Y') }}</u>
+                                    PhilHealth ID Number (PIN): <u>{{ $PIN }}</u>  </div> Petsa (Date): <u>{{ $DATE_DISCHARGED }}</u>
                                 </div>
 
                                  
