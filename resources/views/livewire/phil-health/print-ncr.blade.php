@@ -15,9 +15,7 @@
                  alt="PhilHealth Logo"
                  style="width:150px; height:auto;">
         </div>
-        <div style="font-weight:bold; font-size:13px;">
-            ANNEX A
-        </div>
+     
     </div>
 
     <!-- Title -->
@@ -67,7 +65,7 @@
                 [ ] <b>EMAIL</b>
                 <span style="margin-left:6px;">Email Address:</span>
                 <span style="display:inline-block; min-width:250px; border-bottom:1px solid #000;">
-                    {{ $EMAIL ?? '' }}
+                   {{ $EMAIL }}
                 </span>
             </div>
 
