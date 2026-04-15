@@ -39,11 +39,7 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-<<<<<<< HEAD
                                     <h5>LIFESTREAM DIALYSIS CENTER OPC</h5>
-=======
-                                    <h5>LIFESTREAM DIALYSIS CENTER PHILS.</h5>
->>>>>>> 81f99c94fe1b50fed49a8b5c0e07932157c741b7
                                     {{ $REPORT_HEADER_1 }} <br />
                                     {{ $REPORT_HEADER_2 }}<br />
                                     {{ $REPORT_HEADER_3 }}</b>
