@@ -4,7 +4,7 @@
         <thead class="text-xs bg-sky">
             <tr>
                 <th class="col-1">Account Code</th>
-                <th class="col-3">Account Name</th>
+                <th class="col-3">Account Name asdasd</th>
                 <th class="col-1 text-right">Amount</th>
                 <th class="col-3">Particular</th>
                 @if ($STATUS == 0 || $STATUS == 16)
