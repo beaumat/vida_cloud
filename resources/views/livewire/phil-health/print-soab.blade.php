@@ -143,7 +143,7 @@
                                         </div>
                                         <div class="col-12 text-left"
                                             @if (!$OUTPUT_SIGN) style="opacity: 0.0" @endif>
-                                            CONTACT No. {{ $USER_CONTACT }}</div>
+                                            CONTACT No. 0948-350-2140</div>
                                     </div>
                                 </div>
                                 <div class="col-2"></div>
