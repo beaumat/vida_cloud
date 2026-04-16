@@ -116,7 +116,7 @@
                     <i class="fa fa-print mr-1"></i> CF2
                 </a>
 
-               @if ( $LOCATION_ID === 51 || $LOCATION_ID === 36)
+               @if ( in_array((int)$LOCATION_ID, [39, 40, 51, 36, 38]))
                 <a target="_BLANK"
                     href="{{ route('patientsprintout_ncr', ['id' => $PHILHEALTH_ID]) }}"
                     class="btn btn-sm btn-info m-1">
