@@ -1,15 +1,16 @@
 <div class="print-container bg-white mx-auto text-black"
     style="
-    width: 210mm;
-    height: 297mm;
-    padding: 25mm 0mm 18mm 0mm;
+    width: 100%;
+    max-width: 210mm;
+    min-height: 100%;
+    padding: 20mm 1mm 1mm 1mm;
     font-family: Arial, Helvetica, sans-serif;
     text-align: justify;
     line-height: 1.35;
     box-sizing: border-box;
-    margin: auto;
+    margin: none;
     background: #fff;
-     ">
+">
 
     <!-- Annex  padding: 18mm 20mm 18mm 20mm;-->
     <div style="text-align:right; margin-bottom:24px;">
@@ -59,7 +60,7 @@
             <div style="margin-bottom:8px;font-size:19px;margin-left: 25px">
                 [ ] <b>SMS / TEXT MESSAGE</b>
                 <span>Cellphone Number:</span>
-                <span style="display:inline-block; width:340px; border-bottom:1px solid #000; line-height:1;">
+                <span style="display:inline-block; width:320px; border-bottom:1px solid #000; line-height:1;">
                     {{ $MOBILE_NO ?? '' }}
                 </span>
             </div>
@@ -67,14 +68,14 @@
             <div style="margin-bottom:8px;font-size:19px;margin-left: 25px">
                 [ ] <b>EMAIL</b>
                 <span>Email Address:</span>
-                <span style="display:inline-block; width:520px; border-bottom:1px solid #000; line-height:1;">
+                <span style="display:inline-block; width:500px; border-bottom:1px solid #000; line-height:1;">
                     {{ $EMAIL ?? '' }}
                 </span>
             </div>
 
             <div style="margin-bottom:8px;font-size:19px;margin-left: 25px">
                 [ ] <b>Others:</b>
-                <span style="display:inline-block; width:650px; border-bottom:1px solid #000; line-height:1;">
+                <span style="display:inline-block; width:620px; border-bottom:1px solid #000; line-height:1;">
                     &nbsp;
                 </span>
             </div>
@@ -107,7 +108,7 @@
         </div>
     </div>
     <!-- Signature -->
-    <div style="margin-top:40px;">
+    <div style="margin-top:30px;">
           <!-- Signature -->
    <div style="margin-top:24px; font-family: Arial, Helvetica, sans-serif;">
 
