@@ -4,13 +4,13 @@
     <table class="table table-sm table-bordered table-hover">
         <thead class="text-xs bg-sky">
             <tr>
-                <th class="col-1">Account Code</th>
+                <th class="col-1">Account Code asdasd</th>
                 <th class="col-3">Account Name</th>
                 <th class="col-1 text-right">Amount</th>
                 <th class="col-1 text-center">Tax</th>
                 <th class="col-3">Particular</th>
                 <th class="col-2">Class</th>
-                @if ($STATUS == $openStatus || $STATUS == 16)
+                @if ($STATUS == 0 || $STATUS == 16)
                     <th class="text-center col-1">Action</th>
                 @endif
             </tr>
@@ -59,7 +59,7 @@
                             {{ $list->CLASS_NAME }}
                         @endif
                     </td>
-                    @if ($STATUS == $openStatus || $STATUS == 0)
+                    @if ($STATUS == $openStatus || $STATUS == 16)
                         <td class="text-center">
                             @if ($editExpensesId === $list->ID)
                                 <button title="Update" id="updatebtn" wire:click="updateExpenses({{ $list->ID }})"
