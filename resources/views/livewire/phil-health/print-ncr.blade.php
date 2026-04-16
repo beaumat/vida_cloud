@@ -1,12 +1,14 @@
 <div class="print-container bg-white mx-auto text-black"
-     style="
-        width: 210mm;
-        min-height: 297mm;
-       padding: 25mm 0 18mm 0;
-        font-family: Arial;
-        text-align:justify;
-        line-height: 1.35;
-        box-sizing: border-box;
+    style="
+    width: 210mm;
+    height: 297mm;
+    padding: 25mm 0mm 18mm 0mm;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+    line-height: 1.35;
+    box-sizing: border-box;
+    margin: auto;
+    background: #fff;
      ">
 
     <!-- Annex  padding: 18mm 20mm 18mm 20mm;-->
@@ -16,7 +18,7 @@
 
     <!-- Title -->
    <div style="text-align:center; margin-bottom:24px; font-family: Arial, Helvetica, sans-serif;">
-    <div style="font-weight:bold; font-size:25px;">
+    <div style="font-weight:bold; font-size:30px;">
         PHILHEALTH NCR CONSENT FORM
     </div>
 </div>
@@ -41,14 +43,15 @@
             Sa pamamagitan nito, malaya at boluntaryo kong ibinibigay ang aking pahintulot sa <b>PhilHealth Regional Office NCR</b> na padalhan ako ng impormasyon tungkol sa aking <b>Benefit Payment Notice (BPN)</b> o ang detalye ng bayad sa aking confinement/availment gamit ang sumusunod na pamamaraan:
         </div>
 
-       <div style="font-style: italic; font-size: 18px; text-align: justify; text-justify: inter-word; line-height: 1.4; width: 100%; display: block;">
+       <div style="font-style: italic; font-size: 19px; text-align: justify; text-justify: inter-word;
+        line-height: 1.4; width: 100%; display: block;margin-bottom:8px">
     (I hereby freely and voluntarily authorize PhilHealth Regional Office NCR to send information regarding my Benefit Payment Notice (BPN) or the details of my benefit payment for my confinement/availment through the following methods:)
 </div>
 
 
     <!-- Section I -->
     <div style="margin-bottom:24px;">
-        <div style="font-weight:bold; font-size:20px; margin-bottom:10px;margin-left: 20px">
+        <div style="font-weight:bold; font-size:20px; margin-bottom:10px;margin-left: 20px;">
             I. PAGPILI NG PAMAMARAAN (PLEASE MARK YOUR CHOICE):
         </div>
 
@@ -80,11 +83,11 @@
 
     <!-- Section II -->
     <div style="margin-bottom:28px;">
-        <div style="font-weight:bold;font-size:20px; margin-bottom:10px;">
+        <div style="font-weight:bold;font-size:20px; margin-bottom:10px;margin-left: 20px">
             II. PAGSANG-AYON AT PAGKILALA (AGREEMENT AND ACKNOWLEDGMENT):
         </div>
 
-        <ol style="margin:0; padding-left:28px; font-size:19px;">
+        <ol style="margin:0; padding-left:28px; font-size:19px;margin-left: 25px">
             <li style="margin-bottom:6px;">
                 Nauunawaan ko na ang aking BPN ay naglalaman ng impormasyon tungkol sa aking health insurance benefits.
             </li>
@@ -99,7 +102,7 @@
             </li>
         </ol>
 
-        <div style="font-style:italic; font-size:19px; margin-top:18px;">
+        <div style="font-style:italic; font-size:19px; margin-top:18px;margin-left: 25px">
             (I understand that my BPN contains sensitive information. I acknowledge that providing incorrect contact details may result in non-receipt of the notice. I agree that PhilHealth shall not be held liable for unauthorized access to the information if the provided contact details are incorrect or if my device/account is compromised. This consent remains valid until revoked in writing.)
         </div>
     </div>
