@@ -5,10 +5,11 @@
                 <div class="modal-content text-left">
                     <div class="modal-body">
                         <div class="form-group">
-                            <span class="text-xs">Pre-sign output</span>
+                            <span class="text-xs">Pre-sign output</span> 
                             <input type="checkbox" wire:model.live='BASE_PRESIGN' />
                         </div>
                         <div class="form-group">
+                           
                             <table class="table table-sm table-bordered">
                                 <thead class="text-xs">
                                     <tr class="bg-sky">
@@ -115,11 +116,15 @@
                     <i class="fa fa-print mr-1"></i> CF2
                 </a>
 
+               @if ( $LOCATION_ID === 51 || $LOCATION_ID === 36)
                 <a target="_BLANK"
                     href="{{ route('patientsprintout_ncr', ['id' => $PHILHEALTH_ID]) }}"
                     class="btn btn-sm btn-info m-1">
                     <i class="fa fa-print mr-1"></i> BPN Consent Form
                 </a>
+            @endif
+
+               
             @endif
 
             <!-- CLOSE BUTTON (same row) -->

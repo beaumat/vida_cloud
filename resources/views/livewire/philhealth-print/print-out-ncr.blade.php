@@ -7,8 +7,8 @@
                 /* Custom long size: width 8.5in (letter width), length 14in */
                 /* margin: 0.5in; */
                 /* Adjust margins as desired */
-                margin-left: 14px;
-                margin-right: 14px;
+                margin-left: 10px;
+                margin-right: 10px;
                 margin-top: 0px;
                 margin-bottom: 0px;
             }

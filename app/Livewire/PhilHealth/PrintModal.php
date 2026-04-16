@@ -13,6 +13,7 @@ class PrintModal extends Component
     public bool $showModal = false;
     public int $PHILHEALTH_ID;
     public string $CODE;
+    public int $LOCATION_ID;
     public string $DATE;
     private $philHealthServices;
     public string $PATIENT_NAME;
@@ -36,8 +37,10 @@ class PrintModal extends Component
 
         if ($data) {
             $this->CODE = $data->CODE;
+          //  $this->LOCATON_ID = $data->LOCATION_ID;
             $this->DATE = $data->DATE;
             $this->PATIENT_NAME = $data->CONTACT_NAME;
+             $this->LOCATION_ID = $data->LOCATION_ID;
             $this->DATE_ADMITTED = $data->DATE_ADMITTED;
             $this->DATE_DISCHARGED = $data->DATE_DISCHARGED;
             $this->FIRST_CASE = $data->P1_TOTAL;

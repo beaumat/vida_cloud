@@ -44,6 +44,7 @@ class PhilHealthServices
     public float $PROF_FEE_AMOUNT           = 0; //437.50;
     public float $PROF_FEE_HIDE             = 0;
     public int $PHIL_HEALTH_ITEM_ID         = 2;
+ 
     public bool $ITEMIZED_BASE;
     private $object;
     private $dateServices;
@@ -123,6 +124,7 @@ class PhilHealthServices
             ->select([
                 'philhealth.ID',
                 'philhealth.CODE',
+                'philhealth.LOCATION_ID',
                 'philhealth.DATE',
                 'philhealth.DATE_ADMITTED',
                 'philhealth.DATE_DISCHARGED',
