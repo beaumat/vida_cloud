@@ -2,7 +2,7 @@
      style="
         width: 210mm;
         min-height: 297mm;
-       padding: 30mm 0 18mm 0;
+       padding: 25mm 0 18mm 0;
         font-family: Arial;
         text-align:justify;
         line-height: 1.35;
@@ -38,41 +38,40 @@
     </div>
 
       <div style="margin-bottom:10px; font-size:19px; font-family: Arial; text-align:justify;">
-            Sa pamamagitan nito, malaya at boluntaryo kong ibinibigay ang aking pahintulot sa <b>PhilHealth Regional Office NCR</b> na padalhan ako ng impormasyon tungkol sa aking Benefit Payment Notice (BPN) o ang detalye ng bayad sa aking confinement/availment gamit ang sumusunod na pamamaraan:
+            Sa pamamagitan nito, malaya at boluntaryo kong ibinibigay ang aking pahintulot sa <b>PhilHealth Regional Office NCR</b> na padalhan ako ng impormasyon tungkol sa aking <b>Benefit Payment Notice (BPN)</b> o ang detalye ng bayad sa aking confinement/availment gamit ang sumusunod na pamamaraan:
         </div>
 
        <div style="font-style: italic; font-size: 18px; text-align: justify; text-justify: inter-word; line-height: 1.4; width: 100%; display: block;">
     (I hereby freely and voluntarily authorize PhilHealth Regional Office NCR to send information regarding my Benefit Payment Notice (BPN) or the details of my benefit payment for my confinement/availment through the following methods:)
 </div>
 
-        <br>
 
     <!-- Section I -->
     <div style="margin-bottom:24px;">
-        <div style="font-weight:bold; font-size:20px; margin-bottom:10px;">
+        <div style="font-weight:bold; font-size:20px; margin-bottom:10px;margin-left: 20px">
             I. PAGPILI NG PAMAMARAAN (PLEASE MARK YOUR CHOICE):
         </div>
 
         <div style="padding-left:22px">
-            <div style="margin-bottom:8px;font-size:19px;">
+            <div style="margin-bottom:8px;font-size:19px;margin-left: 25px">
                 [ ] <b>SMS / TEXT MESSAGE</b>
                 <span>Cellphone Number:</span>
-                <span style="display:inline-block; width:355px; border-bottom:1px solid #000; line-height:1;">
+                <span style="display:inline-block; width:340px; border-bottom:1px solid #000; line-height:1;">
                     {{ $MOBILE_NO ?? '' }}
                 </span>
             </div>
 
-            <div style="margin-bottom:8px;font-size:19px;">
+            <div style="margin-bottom:8px;font-size:19px;margin-left: 25px">
                 [ ] <b>EMAIL</b>
                 <span>Email Address:</span>
-                <span style="display:inline-block; width:540px; border-bottom:1px solid #000; line-height:1;">
+                <span style="display:inline-block; width:520px; border-bottom:1px solid #000; line-height:1;">
                     {{ $EMAIL ?? '' }}
                 </span>
             </div>
 
-            <div style="margin-bottom:8px;font-size:19px;">
+            <div style="margin-bottom:8px;font-size:19px;margin-left: 25px">
                 [ ] <b>Others:</b>
-                <span style="display:inline-block; width:670px; border-bottom:1px solid #000; line-height:1;">
+                <span style="display:inline-block; width:650px; border-bottom:1px solid #000; line-height:1;">
                     &nbsp;
                 </span>
             </div>
