@@ -147,7 +147,7 @@
 
             <span><b>Petsa (Date):</b></span>
             <span style="flex:1; border-bottom:1px solid #000; line-height:1">
-                {{ $DATE_DISCHARGED ?? '' }}
+              {{ $DATE_DISCHARGED ? \Carbon\Carbon::parse($DATE_DISCHARGED)->format('m/d/Y') : '' }}
             </span>
         </div>
     </div>

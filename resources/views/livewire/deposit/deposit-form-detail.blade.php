@@ -3,7 +3,7 @@
     <table class="table table-sm table-bordered table-hover">
         <thead class="text-xs bg-sky">
             <tr>
-                <th class="col-3">Received From</th>
+                <th class="col-3">Received From asdasd</th>
                 <th class="col-3">Account</th>
                 <th class="col-1">Payment Method</th>
                 <th class="col-2">Check No.</th>
