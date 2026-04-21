@@ -1,22 +1,22 @@
 <div>
 
     <div class="row text-center mt-1 ">
-        <div class="col-12 font-weight-bold text-md">SUMMARY OF FEES</div>
+        <div class="col-12 font-weight-bold text-md">SUMMARY OF FEES asdasd</div>
     </div>
     <div class="row top-line2 bottom-line2 right-line2 left-line2 text-sm ">
         <div class="col-3 text-center ">
-            <div class="top" style="top:0"> <strong>Fee Particular</strong> </div>
+            <div class="top" style="top:0"> <strong>Fee Particular asdasd</strong> </div>
         </div>
         <div class="col-1 text-center left-line2 ">
             <strong>Amount</strong>
         </div>
 
         <div class="col-2 text-center left-line2">
-            <strong>Mandatory Discount</strong>
+            <strong>Mandatory Discount asdasd</strong>
         </div>
 
         <div class="col-2  left-line2 text-center ">
-            <strong>Philhealth</strong>
+            <strong>Philhealth asdasdasd</strong>
         </div>
         <div class="col-2 text-center  left-line2">
             <strong>Other Funding Sources</strong>
@@ -63,10 +63,10 @@
 
 
             <div id="p-first" class="col-2  left-line2 text-center ">
-                {{-- @if ($P1_DRUG_N_MEDICINE > 0)
+                @if ($P1_DRUG_N_MEDICINE > 0)
                     {{ number_format($P1_DRUG_N_MEDICINE, 2) }}
-                @endif --}}
-                -
+                @endif
+                
             </div>
             <div id="p-gov" class="col-2 text-center  left-line2 text-xs">
                 -
@@ -93,10 +93,10 @@
             @endif
         </div>
         <div id="p-first" class="col-2  left-line2 text-center ">
-            {{-- @if ($P1_LAB_N_DIAGNOSTICS > 0)
+            @if ($P1_LAB_N_DIAGNOSTICS > 0)
                 {{ number_format($P1_LAB_N_DIAGNOSTICS, 2) }}
-            @endif --}}
-            -
+            @endif
+            
         </div>
         <div id="p-gov" class="col-2 text-center  left-line2 text-xs">
             -
@@ -162,13 +162,13 @@
 
 
             <div id="p-first" class="col-2  left-line2 text-center ">
-                {{-- @if ($P1_SUPPLIES > 0)
+                @if ($P1_SUPPLIES > 0)
                     {{ number_format($P1_SUPPLIES, 2) }}
-                @endif --}}
-                -
+                @endif
+                
             </div>
             <div id="p-gov" class="col-2 text-center  left-line2 text-xs">
-                -
+                
             </div>
             <div id="p-pocket" class="col-2 text-center left-line2"> -
             </div>
@@ -191,18 +191,18 @@
             @if ($SP_OTHERS > 0)
                 {{ number_format($SP_OTHERS, 2) }}
             @else
-                -
+                
             @endif
         </div>
 
 
         <div id="p-first" class="col-2  left-line2 text-center font-weight-bold">
-            {{-- @if ($P1_OTHERS > 0)
+            @if ($P1_OTHERS > 0)
                 {{ number_format($P1_OTHERS, 2) }}
             @else
                 -
-            @endif --}}
-            -
+            @endif
+            
         </div>
         <div id="p-after-disc" class="col-2 text-center  left-line2  font-weight-bold">
             -
