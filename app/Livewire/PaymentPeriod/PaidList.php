@@ -86,11 +86,8 @@ class PaidList extends Component
                     $this->getTreamentSummary($PH_DATA);
 
                     if ($this->philHealthServices->deletePayableForDoctor($PH_DATA->ID)) {
-
                         session()->flash('error', 'This payment cannot be deleted. This is Bill payment for doctor fee has already posted to accounts payable. Please delete the bill payment entry first to proceed deleting this payment');
-
                         DB::rollBack();
-
                         return;
                     }
                     $this->philHealthServices->UpdatePayment($PH_DATA->ID, 0, $PAYMENT_ID);
