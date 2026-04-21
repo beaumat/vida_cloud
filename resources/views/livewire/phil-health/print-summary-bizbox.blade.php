@@ -1,22 +1,22 @@
 <div>
 
     <div class="row text-center mt-1 ">
-        <div class="col-12 font-weight-bold text-md">SUMMARY OF FEES asdasd</div>
+        <div class="col-12 font-weight-bold text-md">SUMMARY OF FEES</div>
     </div>
     <div class="row top-line2 bottom-line2 right-line2 left-line2 text-sm ">
         <div class="col-3 text-center ">
-            <div class="top" style="top:0"> <strong>Fee Particular asdasd</strong> </div>
+            <div class="top" style="top:0"> <strong>Fee Particular</strong> </div>
         </div>
         <div class="col-1 text-center left-line2 ">
             <strong>Amount</strong>
         </div>
 
         <div class="col-2 text-center left-line2">
-            <strong>Mandatory Discount asdasd</strong>
+            <strong>Mandatory Discount</strong>
         </div>
 
         <div class="col-2  left-line2 text-center ">
-            <strong>Philhealth asdasdasd</strong>
+            <strong>Philhealth</strong>
         </div>
         <div class="col-2 text-center  left-line2">
             <strong>Other Funding Sources</strong>
