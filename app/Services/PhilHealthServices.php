@@ -44,7 +44,7 @@ class PhilHealthServices
     public float $PROF_FEE_AMOUNT           = 0; //437.50;
     public float $PROF_FEE_HIDE             = 0;
     public int $PHIL_HEALTH_ITEM_ID         = 2;
- 
+
     public bool $ITEMIZED_BASE;
     private $object;
     private $dateServices;
@@ -59,6 +59,7 @@ class PhilHealthServices
     private $itemSoaServices;
     private $philHealthProfFeeServices;
     private $usersLogServices;
+    private $billPaymentServices;
     public function __construct(
         ObjectServices $objectService,
         DateServices $dateServices,
@@ -72,7 +73,8 @@ class PhilHealthServices
         ItemSoaItemizedServices $itemSoaItemizedServices,
         ItemSoaServices $itemSoaServices,
         PhilHealthProfFeeServices $philHealthProfFeeServices,
-        UsersLogServices $usersLogServices
+        UsersLogServices $usersLogServices,
+        BillPaymentServices $billPaymentServices
 
     ) {
         $this->object                      = $objectService;
@@ -88,6 +90,7 @@ class PhilHealthServices
         $this->itemSoaServices             = $itemSoaServices;
         $this->philHealthProfFeeServices   = $philHealthProfFeeServices;
         $this->usersLogServices            = $usersLogServices;
+        $this->billPaymentServices         = $billPaymentServices;
     }
     public function get($ID)
     {
@@ -1368,5 +1371,35 @@ class PhilHealthServices
             ->paginate(15);
 
         return $result;
+    }
+    public function getDataByPayment(int $PAYMENT_ID)
+    {
+        return PhilHealth::where('PAYMENT_ID', $PAYMENT_ID)->get()->first() ?? null;
+    }
+    public function deletePayableForDoctor(int $PHILHEALTH_ID): bool
+    {
+        $data = PhilHealthProfFee::where('PHIC_ID', '=', $PHILHEALTH_ID)->whereNotNull('BILL_ID')->first();
+
+        if ($data) {
+            $BILL_ID = (int) $data->BILL_ID;
+
+            if ($this->billPaymentServices->deletePaymentBill($BILL_ID)) {
+                return true;
+            }
+
+            $JOURNAL_NO = (int) $this->accountJournalServices->getRecord($this->billingServices->object_type_map_bill, $BILL_ID);
+            if ($JOURNAL_NO > 0) {
+                $this->accountJournalServices->UpdatedJournalAmountZero($JOURNAL_NO);
+            }
+
+            PhilHealthProfFee::where('PHIC_ID', '=', $PHILHEALTH_ID)
+                ->whereNotNull('BILL_ID')
+                ->update(['BILL_ID' => null]);
+
+            $this->billingServices->ForceDelete($BILL_ID);
+
+        }
+
+        return false;
     }
 }

@@ -598,22 +598,22 @@ class BillingServices
             ->where('bill.LOCATION_ID', '=', $LOCATION_ID)
             ->where('bill.BALANCE_DUE', '>', 0)
             ->groupBy(
-            [
-                'bill.ID',
-                'bill.DATE',
-                'bill.CODE',
-                'bill.AMOUNT',
-                'bill.BALANCE_DUE',
-                'ph.DATE_ADMITTED',
-                'ph.DATE_DISCHARGED',
-                'ph.P1_TOTAL',
-                'pp.RECEIPT_NO',
-                'pp.DATE',
-                'pp.DATE_FROM',
-                'pp.DATE_TO',
-                'c.NAME',
-                'ph.CONTACT_ID'
-            ] )
+                [
+                    'bill.ID',
+                    'bill.DATE',
+                    'bill.CODE',
+                    'bill.AMOUNT',
+                    'bill.BALANCE_DUE',
+                    'ph.DATE_ADMITTED',
+                    'ph.DATE_DISCHARGED',
+                    'ph.P1_TOTAL',
+                    'pp.RECEIPT_NO',
+                    'pp.DATE',
+                    'pp.DATE_FROM',
+                    'pp.DATE_TO',
+                    'c.NAME',
+                    'ph.CONTACT_ID',
+                ])
             ->get();
 
         return $result;
@@ -866,5 +866,13 @@ class BillingServices
             ->get();
 
         return $result;
+    }
+    public function ForceDelete(int $ID)
+    {
+        BillItems::where('BILL_ID', $ID)->delete();
+        BillExpenses::where('BILL_ID', $ID)->delete();
+        Bill::where('ID', $ID)->delete();
+
+        $this->usersLogServices->AddLogs(TransType::DELETE, LogEntity::BILL, $ID);
     }
 }

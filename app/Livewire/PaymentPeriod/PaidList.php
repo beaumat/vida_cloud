@@ -2,8 +2,12 @@
 namespace App\Livewire\PaymentPeriod;
 
 use App\Services\AccountJournalServices;
+use App\Services\HemoServices;
 use App\Services\InvoiceServices;
+use App\Services\PatientPaymentServices;
 use App\Services\PaymentServices;
+use App\Services\PhilHealthServices;
+use App\Services\ServiceChargeServices;
 use App\Services\TaxCreditServices;
 use App\Services\UserServices;
 use Illuminate\Support\Facades\DB;
@@ -22,23 +26,33 @@ class PaidList extends Component
     private $accountJournalServices;
     private $invoiceServices;
     private $taxCreditServices;
-    public function boot(PaymentServices $paymentServices, AccountJournalServices $accountJournalServices, InvoiceServices $invoiceServices, TaxCreditServices $taxCreditServices)
-    {
+    private $philHealthServices;
+    private $patientPaymentServices;
+    private $hemoServices;
+    private $serviceChargeServices;
+    public function boot(PaymentServices $paymentServices,
+        AccountJournalServices $accountJournalServices,
+        InvoiceServices $invoiceServices,
+        TaxCreditServices $taxCreditServices,
+        PhilHealthServices $philHealthServices,
+        PatientPaymentServices $patientPaymentServices,
+        HemoServices $hemoServices,
+        ServiceChargeServices $serviceChargeServices
+    ) {
         $this->paymentServices        = $paymentServices;
         $this->accountJournalServices = $accountJournalServices;
         $this->invoiceServices        = $invoiceServices;
         $this->taxCreditServices      = $taxCreditServices;
+        $this->philHealthServices     = $philHealthServices;
+        $this->patientPaymentServices = $patientPaymentServices;
+        $this->hemoServices           = $hemoServices;
+        $this->serviceChargeServices  = $serviceChargeServices;
     }
     private function loadData()
     {
         $this->dataList = $this->paymentServices->getListInvoicePaymentTaxBillPhic($this->PAYMENT_PERIOD_ID);
     }
-    public function callTaxCreditByPaymentID(int $PAYMENT_ID)
-    {
 
-        // call URL and new TAB
-
-    }
     public function DeletePaid(int $PAYMENT_ID)
     {
         if (! UserServices::GetUserRightAccess('customer.received-payment.delete')) {
@@ -50,20 +64,46 @@ class PaidList extends Component
         try {
 
             if ($PAYMENT_ID > 0) {
+                $gotTaxCreditDelete = false;
+                $tax_ID             = $this->taxCreditServices->GetTaxID($PAYMENT_ID);
+                if ($this->TaxCreditdeleteEntry($tax_ID)) {
+                    $gotTaxCreditDelete = true;
+                    // NEW STYLE
+                }
+                if (! $gotTaxCreditDelete) {
+                    session()->flash('error', 'No tax credit entry found for this payment');
+                    DB::rollBack();
+                    return;
+                }
                 if (! $this->PaymentdeleteEntry($PAYMENT_ID)) {
                     session()->flash('error', 'this payment already deposited');
                     DB::rollBack();
                     return;
                 }
-                $taxCredit = $this->taxCreditServices->GetListViaPayments($PAYMENT_ID);
-                foreach ($taxCredit as $tax) {
-                    if ($tax->TAX_CREDIT_ID > 0) {
-                        $this->TaxCreditdeleteEntry($tax->TAX_CREDIT_ID);
+                $PH_DATA = $this->philHealthServices->getDataByPayment($PAYMENT_ID);
+                if ($PH_DATA) {
+
+                    $this->getTreamentSummary($PH_DATA);
+
+                    if ($this->philHealthServices->deletePayableForDoctor($PH_DATA->ID)) {
+
+                        session()->flash('error', 'This payment cannot be deleted. This is Bill payment for doctor fee has already posted to accounts payable. Please delete the bill payment entry first to proceed deleting this payment');
+
+                        DB::rollBack();
+
+                        return;
                     }
+                    $this->philHealthServices->UpdatePayment($PH_DATA->ID, 0, $PAYMENT_ID);
+
+                    DB::commit();
+                    session()->flash('message', 'Payment canceled');
                 }
 
-                DB::commit();
-                session()->flash('message', 'Successuflly Canceld');
+                // delete service charge from patient_payment_
+
+                DB::rollBack();
+                session()->flash('error', 'No philhealth entry found for this payment');
+
             }
 
         } catch (\Throwable $th) {
@@ -71,6 +111,26 @@ class PaidList extends Component
             DB::rollBack();
         }
 
+    }
+
+    private function getTreamentSummary($phData)
+    {
+        $PATIENT_PAYMENT_ID = $this->patientPaymentServices->PH_exists($phData->ID);
+
+        $summaryList = $this->hemoServices->GetSummary($phData->CONTACT_ID, $phData->LOCATION_ID, $phData->DATE_ADMITTED, $phData->DATE_DISCHARGED);
+
+        foreach ($summaryList as $sumList) {
+            $PP_ITEM_ID = $this->patientPaymentServices->PaymentChargesExist($PATIENT_PAYMENT_ID, $sumList->SCI_ID);
+
+            if ($PP_ITEM_ID > 0) {
+                $this->patientPaymentServices->PaymentChargesDelete($PP_ITEM_ID, $PATIENT_PAYMENT_ID, $sumList->SCI_ID);
+            }
+
+            $this->serviceChargeServices->updateServiceChargesItemPaid($sumList->SCI_ID);
+            $this->serviceChargeServices->updateServiceChargesBalance($sumList->SERVICE_CHARGES_ID);
+        }
+
+        $this->patientPaymentServices->PH_Delete($PATIENT_PAYMENT_ID, $phData->ID);
     }
     public function PaymentdeleteEntry(int $id): bool
     {

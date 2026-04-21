@@ -40,6 +40,32 @@ class BillPaymentServices
 
         return $result;
     }
+     public function deletePaymentBill(int $BILL_ID): bool
+    {
+        
+        $result = CheckBills::where('BILL_ID', $BILL_ID)->get()->first();
+
+        if ($result) {
+            $payResult = Check::where('ID', '=', $result->CHECK_ID)
+                ->where('TYPE', '=', $this->CHECK_TYPE_ID)
+                ->whereIn('STATUS', [0, 16])
+                ->exists();
+
+            if (! $payResult) {
+                return true;
+            }
+
+            // Delete CHECK BILLS
+            CheckBills::where('BILL_ID', $BILL_ID)->where('CHECK_ID', '=', $result->CHECK_ID)->delete();
+       
+            // Update CHECK Amount
+            $AMOUNT = (float) $this->getTotalApplied($result->CHECK_ID);
+       
+            $this->UpdateAmount($result->CHECK_ID, $AMOUNT);
+        }
+
+        return false;
+    }
     public function Store(string $CODE, string $DATE, int $BANK_ACCOUNT_ID, int $PAY_TO_ID, int $LOCATION_ID, float $AMOUNT, string $NOTES, int $ACCOUNTS_PAYABLE_ID): int
     {
 
