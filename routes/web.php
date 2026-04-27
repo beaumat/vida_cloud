@@ -3,6 +3,7 @@
 use App\Livewire\AccountingReport\GeneralLedgerGenerate;
 use App\Livewire\AccountingReport\GeneralLedgerReport;
 use App\Livewire\AccountingReport\TransactionDetailsGenerate;
+
 use App\Livewire\AccountingReport\TransactionDetailsMissing;
 use App\Livewire\AccountingReport\TransactionDetailsReport;
 use App\Livewire\AccountingReport\TransactionJournalError;
@@ -56,6 +57,7 @@ use App\Livewire\Doctor\DoctorList;
 use App\Livewire\Employees\EmployeeForm;
 use App\Livewire\Employees\EmployeeList;
 use App\Livewire\FinancialReport\BalanceSheetReport;
+// use App\Livewire\FinancialReport\PettyCashReport;
 use App\Livewire\FinancialReport\CashFlowReport;
 use App\Livewire\FinancialReport\EquityReport;
 use App\Livewire\FinancialReport\IncomeStatementReport;
@@ -761,6 +763,11 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/{from}/{to?}/{location}/{account?}/{accounttype?}', TransactionDetailsGenerate::class)->name('transaction_details_view');
             });
 
+           
+            //     Route::get('/', PettyCashDetailsReport::class)->name('pettycash_details_report');
+            //     Route::get('/{from}/{to?}/{location}/{account?}/{accounttype?}', PettyCashDetailsGenerate::class)->name('pettycash_details_view');
+            // });
+
             Route::prefix('/transaction-journal')->middleware(['permission:report.accounting.transaction-details'])->group(function () {
                 Route::get('/', TransactionJournalReport::class)->name('transaction_journal_report');
                 Route::get('/view/{from}/{to?}/{location}/{account?}/{accounttype?}', TransactionJournalGenerate::class)->name('transaction_journal_view');
@@ -787,6 +794,12 @@ Route::middleware(['auth'])->group(function () {
             Route::prefix('/equity')->middleware(['permission:report.financial.equity'])->group(function () {
                 Route::get('/', EquityReport::class)->name('equity_report');
             });
+
+            //  Route::prefix('/pettycash-transaction')->middleware(['permission:report.financial.petty-cash'])->group(function () {
+            //     Route::get('/', PettyCashReport::class)->name('petty_cash_report');
+                
+
+            // });
 
         });
 

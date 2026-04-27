@@ -391,6 +391,48 @@ class FinancialStatementServices
     }
 
 
+    // /// PETTY CASH
+   public function getPettyCashListByDateRange(
+    array $type = [],
+    string $DATE_FROM,
+    string $DATE_TO,
+    int $LOCATION_ID,
+    bool $isCreditIncrease = false
+) {
+    $result = DB::table('bill')
+        ->select([
+            'bill.ID',
+            'bill.CODE',
+            'bill.DATE',
+            'bill.AMOUNT',
+            'bill.BALANCE_DUE',
+            'bill.INPUT_TAX_RATE',
+            'bill.NOTES',
+            'c.NAME as CONTACT_NAME',
+            'l.NAME as LOCATION_NAME',
+            't.NAME as TAX_NAME',
+            's.DESCRIPTION as STATUS',
+            'bill.STATUS as STATUS_ID',
+        ])
+        ->join('contact as c', 'c.ID', '=', 'bill.VENDOR_ID')
+        ->join('location as l', 'l.ID', '=', 'bill.LOCATION_ID')
+        ->join('document_status_map as s', 's.ID', '=', 'bill.STATUS')
+        ->leftJoin('tax as t', 't.ID', '=', 'bill.INPUT_TAX_ID')
+
+        // ✅ Filters (based on your SQL)
+        ->where('c.ID', '=', 1225) // you can replace with variable if needed
+        ->when($LOCATION_ID > 0, function ($query) use ($LOCATION_ID) {
+            return $query->where('bill.LOCATION_ID', '=', $LOCATION_ID);
+        })
+        ->whereBetween('bill.DATE', [$DATE_FROM, $DATE_TO])
+        ->where('bill.STATUS', '=', 15)
+
+        ->get();
+
+    return $result;
+}
+
+
     public function getBalanceSheetAccountTypeListByHistory(array $type = [], string $DATE, int $LOCATION_ID, bool $isCreditIncrease = false): float
     {
         $debit_is = $isCreditIncrease ? 1 : 0;

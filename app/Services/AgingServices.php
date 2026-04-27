@@ -34,7 +34,7 @@ class AgingServices
                 $query->whereIn('c.ID', $CONTACT_SELECT);
             })
             ->whereIn('c.TYPE', [1, 3])
-            ->groupBy('c.ID', 'c.NAME')
+            ->groupBy('c.ID', 'c.NAME', 't.DESCRIPTION')
             ->where('i.BALANCE_DUE', '>', 0)
             ->get();
 
@@ -42,35 +42,65 @@ class AgingServices
     }
     public function ARAgingDetais(string $AS_OF_DATE, int $LOCATION_ID, array $CONTACT_SELECT)
     {
-        $result = DB::table('invoice as i')
-            ->select([
-                'c.ID as CONTACT_ID',
-                'c.NAME as CONTACT_NAME',
-                'ct.DESCRIPTION as TYPE',
-                DB::raw(" DATEDIFF('$AS_OF_DATE',i.DUE_DATE) as AGING"),
-                'i.DATE',
-                'i.CODE',
-                'i.DUE_DATE',
-                'i.AMOUNT',
-                'i.BALANCE_DUE',
-                't.DESCRIPTION as PAYMENT_TERMS',
-                'l.NAME as LOCATION_NAME',
+        // $result = DB::table('invoice as i')
+        //     ->select([
+        //         'c.ID as CONTACT_ID',
+        //         'c.NAME as CONTACT_NAME',
+        //         'ct.DESCRIPTION as TYPE',
+        //         DB::raw(" DATEDIFF('$AS_OF_DATE',i.DUE_DATE) as AGING"),
+        //         'i.DATE',
+        //         'i.CODE',
+        //         'i.DUE_DATE',
+        //         'i.AMOUNT',
+        //         'i.BALANCE_DUE',
+        //         't.DESCRIPTION as PAYMENT_TERMS',
+        //         'l.NAME as LOCATION_NAME',
 
-            ])
-            ->join('contact as c', 'c.ID', '=', 'i.CUSTOMER_ID')
-            ->join('contact_type_map as ct', 'ct.ID', '=', 'c.TYPE')
-            ->join('payment_terms as t', 't.ID', '=', 'i.PAYMENT_TERMS_ID')
-            ->join('location as l', 'l.ID', '=', 'i.LOCATION_ID')
-            ->when($LOCATION_ID > 0, function ($query) use (&$LOCATION_ID) {
-                $query->where('i.LOCATION_ID', '=', $LOCATION_ID);
-            })
-            ->when($CONTACT_SELECT, function ($query) use (&$CONTACT_SELECT) {
-                $query->whereIn('c.ID', $CONTACT_SELECT);
-            })
-            ->whereIn('c.TYPE', [1, 3])
-            ->where('i.BALANCE_DUE', '>', 0)
-            ->orderBy('DUE_DATE', 'desc')
-            ->get();
+        //     ])
+        //     ->join('contact as c', 'c.ID', '=', 'i.CUSTOMER_ID')
+        //     ->join('contact_type_map as ct', 'ct.ID', '=', 'c.TYPE')
+        //     ->join('payment_terms as t', 't.ID', '=', 'i.PAYMENT_TERMS_ID')
+        //     ->join('location as l', 'l.ID', '=', 'i.LOCATION_ID')
+        //     ->when($LOCATION_ID > 0, function ($query) use (&$LOCATION_ID) {
+        //         $query->where('i.LOCATION_ID', '=', $LOCATION_ID);
+        //     })
+        //     ->when($CONTACT_SELECT, function ($query) use (&$CONTACT_SELECT) {
+        //         $query->whereIn('c.ID', $CONTACT_SELECT);
+        //     })
+        //     ->whereIn('c.TYPE', [1, 3])
+        //     ->where('i.BALANCE_DUE', '>', 0)
+        //     ->groupBy('c.NAME', 't.DESCRIPTION', 'l.NAME')
+        //     ->orderBy('DUE_DATE', 'desc')
+        //     ->get();
+
+        $result = DB::table('invoice as i')
+    ->select([
+        'c.ID as CONTACT_ID',
+        'c.NAME as CONTACT_NAME',
+        'ct.DESCRIPTION as TYPE',
+        DB::raw("DATEDIFF('$AS_OF_DATE', i.DUE_DATE) as AGING"),
+        'i.DATE',
+        'i.CODE',
+        'i.DUE_DATE',
+        'i.AMOUNT',
+        'i.BALANCE_DUE',
+        't.DESCRIPTION as PAYMENT_TERMS',
+        'l.NAME as LOCATION_NAME',
+    ])
+    ->join('contact as c', 'c.ID', '=', 'i.CUSTOMER_ID')
+    ->join('contact_type_map as ct', 'ct.ID', '=', 'c.TYPE')
+    ->join('payment_terms as t', 't.ID', '=', 'i.PAYMENT_TERMS_ID')
+    ->join('location as l', 'l.ID', '=', 'i.LOCATION_ID')
+    ->when($LOCATION_ID > 0, function ($query) use ($LOCATION_ID) {
+        $query->where('i.LOCATION_ID', '=', $LOCATION_ID);
+    })
+    ->when($CONTACT_SELECT, function ($query) use ($CONTACT_SELECT) {
+        $query->whereIn('c.ID', $CONTACT_SELECT);
+    })
+    ->whereIn('c.TYPE', [1, 3])
+    ->where('i.BALANCE_DUE', '>', 0)
+    ->orderBy('c.NAME', 'asc')
+    ->get();
 
         return $result;
     }
@@ -226,7 +256,7 @@ class AgingServices
                 $query->whereIn('c.ID', $CONTACT_SELECT);
             })
             ->whereIn('c.TYPE', [0, 4])
-            ->groupBy('c.ID', 'c.NAME')
+            ->groupBy('c.ID', 'c.NAME', 't.DESCRIPTION')
             ->where('i.BALANCE_DUE', '>', 0)
             ->get();
 

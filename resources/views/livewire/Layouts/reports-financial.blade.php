@@ -47,5 +47,15 @@ use App\Services\UserServices;
                 </a>
             </li>
         @endif
+
+         {{-- @if (UserServices::GetUserRightAccess('report.financial.petty-cash'))
+            <li class="nav-item">
+                <a href="{{ route('reportsfinancialpetty_cash_report') }}"
+                    class="nav-link {{ request()->is('reports/financial/petty-cash*') ? 'text-warning font-weight-bold' : '' }}">
+                    <i class="fa fa-print nav-icon"></i>
+                    <p>Petty Cash</p>
+                </a>
+            </li>
+        @endif --}}
     </ul>
 </li>

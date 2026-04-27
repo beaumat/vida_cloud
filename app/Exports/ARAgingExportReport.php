@@ -29,7 +29,7 @@ class ARAgingExportReport implements FromCollection, ShouldAutoSize
         ];
         return array_values($headers);
     }
-    public function SetDetails(string $DATE, string $REFERENCE, string $CUSTOMER, string $TERMS, string $DUE_DATE, string $AGING, string $OPEN_BALANCE, string $LOCATION)
+    public function SetDetails1(string $DATE, string $REFERENCE, string $CUSTOMER, string $TERMS, string $DUE_DATE, string $AGING, string $OPEN_BALANCE, string $LOCATION)
     {
         $rowData = [
             'DATE'=> $DATE,
@@ -44,13 +44,63 @@ class ARAgingExportReport implements FromCollection, ShouldAutoSize
 
         return array_values($rowData);
     }
+
+  public function SetDetails(
+    string $INVOICE_DATE = '',
+    string $DUE_DATE = '',
+    string $INVOICE_NUMBER = '',
+    string $INVOICE_REFERENCE = '',
+    string $CURRENT = '0.00',
+    string $LESS_1_MONTH = '0.00',
+    string $ONE_MONTH = '0.00',
+    string $TWO_MONTHS = '0.00',
+    string $THREE_MONTHS = '0.00',
+    string $OLDER = '0.00',
+    string $TOTAL = '0.00'
+) {
+    $TOTAL = number_format(
+        (float) str_replace(',', '', $CURRENT) +
+        (float) str_replace(',', '', $LESS_1_MONTH) +
+        (float) str_replace(',', '', $ONE_MONTH) +
+        (float) str_replace(',', '', $TWO_MONTHS) +
+        (float) str_replace(',', '', $THREE_MONTHS) +
+        (float) str_replace(',', '', $OLDER),
+        2
+    );
+
+    return [
+        $INVOICE_DATE,
+        $DUE_DATE,
+        $INVOICE_NUMBER,
+        $INVOICE_REFERENCE,
+        number_format((float) str_replace(',', '', $CURRENT), 2),
+        number_format((float) str_replace(',', '', $LESS_1_MONTH), 2),
+        number_format((float) str_replace(',', '', $ONE_MONTH), 2),
+        number_format((float) str_replace(',', '', $TWO_MONTHS), 2),
+        number_format((float) str_replace(',', '', $THREE_MONTHS), 2),
+        number_format((float) str_replace(',', '', $OLDER), 2),
+        $TOTAL,
+    ];
+}
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
 
-        $finalData = [];
+        $finalData[] = [
+    'Invoice Date',
+    'Due Date',
+    'Invoice Number',
+    'Invoice Reference',
+    'Current',
+    '< 1 Month',
+    '1 Month',
+    '2 Months',
+    '3 Months',
+    'Older',
+    'Total'
+];
 
         if ($this->isSummary) {
             $finalData[] = $this->SetSummary('CUSTOMER', 'CURRENT', '1-30', '1-60', '61-90', '90-OVER', 'BALANCE');
@@ -94,93 +144,103 @@ class ARAgingExportReport implements FromCollection, ShouldAutoSize
 
         } else {
 
-            $finalData[] = $this->SetDetails('DATE',
-                 'REFERENCE',
-                 'CUSTOMER',
-                 'TERMS',
-                 'DUE-DATE',
-                 'AGING',
-                 'OPEN-BALANCE',
-                 'LOCATION');
+        $finalData[] = ['AR Aging Report', '', '', '', '', '', '', '', '', '', ''];
+$finalData[] = ['', '', '', '', '', '', '', '', '', '', ''];
 
-            $D_CURRENT = false;
-            $D_1_30 = false;
-            $D_31_60 = false;
-            $D_61_90 = false;
-            $D_91_OVER = false;
+$finalData[] = [
+    'As of Date:',
+    date('m/d/Y', strtotime($this->DATE ?? now())),
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    'Location:',
+    $this->LOCATION_NAME ?? ''
+];
 
-            $TMP_AGING = '';
-            $COMPARE = '';
-            $RUN_BALANCE = 0;
-            $RUN_TOTAL = 0;
+$finalData[] = ['', '', '', '', '', '', '', '', '', '', ''];
 
-            foreach ($this->dataList as $list) {
-                if ($list->AGING <= 0) {
-                    if ($D_CURRENT == false) {
-                        if ($COMPARE != $TMP_AGING && $RUN_BALANCE > 0) {
-                            $finalData[] = $this->SetDetails('TOTAL ' .  $TMP_AGING, '', '', '', '', '', number_format($RUN_BALANCE, 2), '');
-                        }
-                        $finalData[] = $this->SetDetails('CURRENT ', '', '', '', '', '', '', '');
-                        $D_CURRENT = true;
-                        $TMP_AGING = 'CURRENT';
-                        $RUN_BALANCE = 0;
-                    }
-                } else if ($list->AGING <= 30) {
-                    if ($D_1_30 == false) {
-                        if ($RUN_BALANCE > 0) {
-                            $finalData[] = $this->SetDetails('TOTAL ' .  $TMP_AGING, '', '', '', '', '', number_format($RUN_BALANCE, 2), '');
-                        }
-                        $finalData[] = $this->SetDetails('1-30 ', '', '', '', '', '', '', '');
-                        $D_1_30 = true;
-                        $TMP_AGING = '1-30';
-                        $RUN_BALANCE = 0;
-                    }
-                } else if ($list->AGING <= 60) {
-                    if ($D_31_60 == false) {
-                        if ($RUN_BALANCE > 0) {
-                            $finalData[] = $this->SetDetails('TOTAL ' .  $TMP_AGING, '', '', '', '', '', number_format($RUN_BALANCE, 2), '');
-                        }
-                        $finalData[] = $this->SetDetails('31-60 ', '', '', '', '', '', '', '');
-                        $D_31_60 = true;
-                        $TMP_AGING = '31-60';
-                        $RUN_BALANCE = 0;
-                    }
-                } else if ($list->AGING <= 90) {
-                    if ($D_61_90 == false) {
-                        if ($RUN_BALANCE > 0) {
-                            $finalData[] = $this->SetDetails('TOTAL ' .  $TMP_AGING, '', '', '', '', '', number_format($RUN_BALANCE, 2), '');
-                        }
+$finalData[] = [
+    'Invoice Date',
+    'Due Date',
+    'Invoice Number',
+    'Invoice Reference',
+    'Current',
+    '< 1 Month',
+    '1 Month',
+    '2 Months',
+    '3 Months',
+    'Older',
+    'Total'
+];
 
-                        $finalData[] = $this->SetDetails('61-90 ', '', '', '', '', '', '', '');
+$currentContact = null;
+$currentDate = null;
 
-                        $D_61_90 = true;
-                        $TMP_AGING = '61-90';
-                        $RUN_BALANCE = 0;
-                    }
-                } else {
+foreach ($this->dataList as $list) {
 
-                    if ($D_91_OVER == false) {
-                        if ($RUN_BALANCE > 0) {
-                            $finalData[] = $this->SetDetails('TOTAL ' .  $TMP_AGING, '', '', '', '', '', number_format($RUN_BALANCE, 2), '');
-                        }
+    $rowDate = date('Y-m-d', strtotime($list->DATE));
 
-                        $finalData[] = $this->SetDetails('91 OVER ', '', '', '', '', '', '', '');
+    // Patient name row
+    if ($currentContact !== $list->CONTACT_ID) {
+        $currentContact = $list->CONTACT_ID;
+        $currentDate = null;
 
-                        $D_91_OVER = true;
-                        $TMP_AGING = '91 OVER';
-                        $RUN_BALANCE = 0;
-                    }
-                }
+        $finalData[] = [
+            $list->CONTACT_NAME,
+            '', '', '', '', '', '', '', '', '', ''
+        ];
+    }
 
-                $RUN_BALANCE = $RUN_BALANCE + $list->BALANCE_DUE;
+    // Distinct invoice date row under patient
+    if ($currentDate !== $rowDate) {
+        $currentDate = $rowDate;
 
-                $finalData[] = $this->SetDetails(date('M/d/Y', strtotime($list->DATE)), $list->CODE, $list->CONTACT_NAME, $list->PAYMENT_TERMS, date('M/d/Y', strtotime($list->DUE_DATE)), $list->AGING < 1 ? '' : $list->AGING, number_format($list->BALANCE_DUE, 2), $list->LOCATION_NAME);
-                $COMPARE = $TMP_AGING;
-                $RUN_TOTAL = $RUN_TOTAL + $list->BALANCE_DUE ?? 0;
-            }
+        $finalData[] = [
+            date('d M Y', strtotime($rowDate)),
+            '', '', '', '', '', '', '', '', '', ''
+        ];
+    }
 
-            $finalData[] = $this->SetDetails('TOTAL ' .  $TMP_AGING, '', '', '', '', '', number_format($RUN_BALANCE, 2), '');
-            $finalData[] = $this->SetDetails('', '', '', '', '', '', number_format($RUN_TOTAL, 2), '');
+    $current = 0;
+    $less1Month = 0;
+    $oneMonth = 0;
+    $twoMonths = 0;
+    $threeMonths = 0;
+    $older = 0;
+
+    if ($list->AGING <= 0) {
+        $current = $list->BALANCE_DUE;
+    } elseif ($list->AGING <= 30) {
+        $less1Month = $list->BALANCE_DUE;
+    } elseif ($list->AGING <= 60) {
+        $oneMonth = $list->BALANCE_DUE;
+    } elseif ($list->AGING <= 90) {
+        $twoMonths = $list->BALANCE_DUE;
+    } elseif ($list->AGING <= 120) {
+        $threeMonths = $list->BALANCE_DUE;
+    } else {
+        $older = $list->BALANCE_DUE;
+    }
+
+    // Invoice row
+    $finalData[] = [
+        '',
+        date('d M Y', strtotime($list->DUE_DATE)),
+        $list->CODE,
+        $list->REFERENCE ?? '',
+        number_format($current, 2),
+        number_format($less1Month, 2),
+        number_format($oneMonth, 2),
+        number_format($twoMonths, 2),
+        number_format($threeMonths, 2),
+        number_format($older, 2),
+        number_format($list->BALANCE_DUE, 2),
+    ];
+}
         }
         return collect($finalData);
     }

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h5 class="m-0">
-                        <a href="{{ route('reportsar_aging') }}"> AR Aging Report </a>
+                        <a href="{{ route('reportsar_aging') }}"> AR Aging Report</a>
                     </h5>
                 </div>
                 <div class="col-sm-6">
@@ -133,7 +133,7 @@
                             </tbody>
                         </table>
                     @else
-                        <table class="table table-sm  table-bordered table-hover ">
+                        {{-- <table class="table table-sm  table-bordered table-hover ">
                             <thead class="bg-info h1">
                                 <tr>
                                     <th class="text-left">Date</th>
@@ -354,7 +354,157 @@
                                     <td></td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> --}}
+
+                       <table class="table table-sm table-bordered">
+    <thead>
+        <tr>
+            <th>Invoice Date</th>
+            <th>Due Date</th>
+            <th>Invoice Number</th>
+            <th>Invoice Reference</th>
+            <th class="text-right">Current</th>
+            <th class="text-right">&lt; 1 Month</th>
+            <th class="text-right">1 Month</th>
+            <th class="text-right">2 Months</th>
+            <th class="text-right">3 Months</th>
+            <th class="text-right">Older</th>
+            <th class="text-right">Total</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @php
+            $currentContact = null;
+            $shownDates = [];
+
+            $contactCurrent = 0;
+            $contactLess1Month = 0;
+            $contact1Month = 0;
+            $contact2Months = 0;
+            $contact3Months = 0;
+            $contactOlder = 0;
+            $contactTotal = 0;
+        @endphp
+
+        @foreach ($detailList as $list)
+
+            @php
+                $rowDate = date('Y-m-d', strtotime($list->DATE));
+            @endphp
+
+            {{-- New Patient --}}
+            @if ($currentContact !== $list->CONTACT_ID)
+
+                @if ($currentContact !== null)
+                    <tr style="background-color:#fff3cd; font-weight:bold;"; class="font-weight-bold">
+                        <td colspan="4">TOTAL AMOUNT</td>
+                        <td class="text-right">{{ number_format($contactCurrent, 2) }}</td>
+                        <td class="text-right">{{ number_format($contactLess1Month, 2) }}</td>
+                        <td class="text-right">{{ number_format($contact1Month, 2) }}</td>
+                        <td class="text-right">{{ number_format($contact2Months, 2) }}</td>
+                        <td class="text-right">{{ number_format($contact3Months, 2) }}</td>
+                        <td class="text-right">{{ number_format($contactOlder, 2) }}</td>
+                        <td class="text-right">{{ number_format($contactTotal, 2) }}</td>
+                    </tr>
+                @endif
+
+                @php
+                    $currentContact = $list->CONTACT_ID;
+                    $previousContactName = $list->CONTACT_NAME;
+
+                    // reset distinct dates per patient
+                    $shownDates = [];
+
+                    $contactCurrent = 0;
+                    $contactLess1Month = 0;
+                    $contact1Month = 0;
+                    $contact2Months = 0;
+                    $contact3Months = 0;
+                    $contactOlder = 0;
+                    $contactTotal = 0;
+                @endphp
+
+                <tr class="font-weight-bold">
+                    <td colspan="11">{{ $list->CONTACT_NAME }}</td>
+                </tr>
+            @endif
+
+            {{-- Show each invoice date only once per patient --}}
+            @if (!in_array($rowDate, $shownDates))
+                @php
+                    $shownDates[] = $rowDate;
+                @endphp
+
+                <tr>
+                    <td colspan="11" class="font-weight-bold text-primary">
+                        {{ date('d M Y', strtotime($rowDate)) }}
+                    </td>
+                </tr>
+            @endif
+
+            @php
+                $current = 0;
+                $less1Month = 0;
+                $oneMonth = 0;
+                $twoMonths = 0;
+                $threeMonths = 0;
+                $older = 0;
+
+                if ($list->AGING <= 0) {
+                    $current = $list->BALANCE_DUE;
+                } elseif ($list->AGING <= 30) {
+                    $less1Month = $list->BALANCE_DUE;
+                } elseif ($list->AGING <= 60) {
+                    $oneMonth = $list->BALANCE_DUE;
+                } elseif ($list->AGING <= 90) {
+                    $twoMonths = $list->BALANCE_DUE;
+                } elseif ($list->AGING <= 120) {
+                    $threeMonths = $list->BALANCE_DUE;
+                } else {
+                    $older = $list->BALANCE_DUE;
+                }
+
+                $contactCurrent += $current;
+                $contactLess1Month += $less1Month;
+                $contact1Month += $oneMonth;
+                $contact2Months += $twoMonths;
+                $contact3Months += $threeMonths;
+                $contactOlder += $older;
+                $contactTotal += $list->BALANCE_DUE;
+            @endphp
+
+            <tr>
+                {{-- Show invoice date only in the blue date header above --}}
+                <td></td>
+                <td>{{ date('d M Y', strtotime($list->DUE_DATE)) }}</td>
+                <td>{{ $list->CODE }}</td>
+                <td>{{ $list->REFERENCE ?? '' }}</td>
+                <td class="text-right">{{ number_format($current, 2) }}</td>
+                <td class="text-right">{{ number_format($less1Month, 2) }}</td>
+                <td class="text-right">{{ number_format($oneMonth, 2) }}</td>
+                <td class="text-right">{{ number_format($twoMonths, 2) }}</td>
+                <td class="text-right">{{ number_format($threeMonths, 2) }}</td>
+                <td class="text-right">{{ number_format($older, 2) }}</td>
+                <td class="text-right">{{ number_format($list->BALANCE_DUE, 2) }}</td>
+            </tr>
+
+        @endforeach
+
+        @if ($currentContact !== null)
+            <tr class="font-weight-bold">
+                <td colspan="4">Total {{ $previousContactName }}</td>
+                <td class="text-right">{{ number_format($contactCurrent, 2) }}</td>
+                <td class="text-right">{{ number_format($contactLess1Month, 2) }}</td>
+                <td class="text-right">{{ number_format($contact1Month, 2) }}</td>
+                <td class="text-right">{{ number_format($contact2Months, 2) }}</td>
+                <td class="text-right">{{ number_format($contact3Months, 2) }}</td>
+                <td class="text-right">{{ number_format($contactOlder, 2) }}</td>
+                <td class="text-right">{{ number_format($contactTotal, 2) }}</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
                     @endif
                 </div>
             </div>

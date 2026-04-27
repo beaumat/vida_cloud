@@ -195,8 +195,6 @@ class PhilHealthForm extends Component
     public function updateCancel()
     {
         return Redirect::route('patientsphic_edit', ['id' => $this->ID]);
-
-        
     }
     public function save()
     {
