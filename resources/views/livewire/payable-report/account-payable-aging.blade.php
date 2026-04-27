@@ -131,7 +131,137 @@
                             </tbody>
                         </table>
                     @else
-                        <table class="table table-sm  table-bordered table-hover ">
+                    <table class="table table-sm table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Invoice Date</th>
+            <th>Due Date</th>
+            <th>Invoice Reference</th>
+            <th class="text-right">Current</th>
+            <th class="text-right">&lt; 1 Month</th>
+            <th class="text-right">1 Month</th>
+            <th class="text-right">2 Months</th>
+            <th class="text-right">3 Months</th>
+            <th class="text-right">Older</th>
+            <th class="text-right">Total</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @php
+            $grouped = $detailList->groupBy('CONTACT_NAME');
+
+            $grandCurrent = 0;
+            $grandLess1 = 0;
+            $grand1 = 0;
+            $grand2 = 0;
+            $grand3 = 0;
+            $grandOlder = 0;
+            $grandTotal = 0;
+        @endphp
+
+        @foreach ($grouped as $contactName => $items)
+            @php
+                $totalCurrent = 0;
+                $totalLess1 = 0;
+                $total1 = 0;
+                $total2 = 0;
+                $total3 = 0;
+                $totalOlder = 0;
+                $totalAll = 0;
+            @endphp
+
+            <tr>
+                <td colspan="10" class="font-weight-bold">{{ $contactName }}</td>
+            </tr>
+
+            @foreach ($items as $list)
+                @php
+                    $current = 0;
+                    $less1 = 0;
+                    $month1 = 0;
+                    $month2 = 0;
+                    $month3 = 0;
+                    $older = 0;
+
+                    if ($list->AGING <= 0) {
+                        $current = $list->BALANCE_DUE;
+                    } elseif ($list->AGING <= 30) {
+                        $less1 = $list->BALANCE_DUE;
+                    } elseif ($list->AGING <= 60) {
+                        $month1 = $list->BALANCE_DUE;
+                    } elseif ($list->AGING <= 90) {
+                        $month2 = $list->BALANCE_DUE;
+                    } elseif ($list->AGING <= 120) {
+                        $month3 = $list->BALANCE_DUE;
+                    } else {
+                        $older = $list->BALANCE_DUE;
+                    }
+
+                    $rowTotal = $list->BALANCE_DUE;
+
+                    $totalCurrent += $current;
+                    $totalLess1 += $less1;
+                    $total1 += $month1;
+                    $total2 += $month2;
+                    $total3 += $month3;
+                    $totalOlder += $older;
+                    $totalAll += $rowTotal;
+                @endphp
+
+                <tr>
+                    <td>{{ date('d M Y', strtotime($list->DATE)) }}</td>
+                    <td>{{ date('d M Y', strtotime($list->DUE_DATE)) }}</td>
+                    <td>{{ $list->CODE }}</td>
+                    <td class="text-right">{{ number_format($current, 2) }}</td>
+                    <td class="text-right">{{ number_format($less1, 2) }}</td>
+                    <td class="text-right">{{ number_format($month1, 2) }}</td>
+                    <td class="text-right">{{ number_format($month2, 2) }}</td>
+                    <td class="text-right">{{ number_format($month3, 2) }}</td>
+                    <td class="text-right">{{ number_format($older, 2) }}</td>
+                    <td class="text-right">{{ number_format($rowTotal, 2) }}</td>
+                </tr>
+            @endforeach
+
+            @php
+                $grandCurrent += $totalCurrent;
+                $grandLess1 += $totalLess1;
+                $grand1 += $total1;
+                $grand2 += $total2;
+                $grand3 += $total3;
+                $grandOlder += $totalOlder;
+                $grandTotal += $totalAll;
+            @endphp
+
+            <tr style="background-color:#fff3cd; font-weight:bold; border-top:2px solid #000; border-bottom:2px solid #000;">
+                <td colspan="3">Total Amount</td>
+                <td class="text-right">{{ number_format($totalCurrent, 2) }}</td>
+                <td class="text-right">{{ number_format($totalLess1, 2) }}</td>
+                <td class="text-right">{{ number_format($total1, 2) }}</td>
+                <td class="text-right">{{ number_format($total2, 2) }}</td>
+                <td class="text-right">{{ number_format($total3, 2) }}</td>
+                <td class="text-right">{{ number_format($totalOlder, 2) }}</td>
+                <td class="text-right">{{ number_format($totalAll, 2) }}</td>
+            </tr>
+
+            <tr>
+                <td colspan="10">&nbsp;</td>
+            </tr>
+        @endforeach
+
+        <tr class="font-weight-bold text-danger">
+            <td colspan="3">Grand Total</td>
+            <td class="text-right">{{ number_format($grandCurrent, 2) }}</td>
+            <td class="text-right">{{ number_format($grandLess1, 2) }}</td>
+            <td class="text-right">{{ number_format($grand1, 2) }}</td>
+            <td class="text-right">{{ number_format($grand2, 2) }}</td>
+            <td class="text-right">{{ number_format($grand3, 2) }}</td>
+            <td class="text-right">{{ number_format($grandOlder, 2) }}</td>
+            <td class="text-right">{{ number_format($grandTotal, 2) }}</td>
+        </tr>
+    </tbody>
+</table>
+                        {{-- <table class="table table-sm  table-bordered table-hover ">
                             <thead class="bg-info h1">
                                 <tr>
                                     <th class="text-left">Date</th>
@@ -342,7 +472,7 @@
                                     <td></td>
                                 </tr>
                             </tbody>
-                        </table>
+                        </table> --}}
                     @endif
                 </div>
             </div>
