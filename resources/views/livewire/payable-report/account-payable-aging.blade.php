@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h5 class="m-0">
-                        <a href="{{ route('reportsap_aging') }}"> AP Aging Report </a>
+                        <a href="{{ route('reportsap_aging') }}"> AP Aging Report</a>
                     </h5>
                 </div>
                 <div class="col-sm-6">

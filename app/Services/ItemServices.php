@@ -584,79 +584,79 @@ class ItemServices
 
         return $items;
     }
-    // public function getItemListBySubId(int $itemSubId, $search, int $HEMO_ID)
-    // {
-    //     $data = Items::query()
-    //         ->select([
-    //             'ID',
-    //             'DESCRIPTION',
-    //             'RATE',
-    //         ])
-    //         ->where('INACTIVE', 0)
-    //         ->where('NON_HEMO', 0)
-    //         ->where('SUB_CLASS_ID', $itemSubId)
-    //         ->when($search, function ($query) use (&$search) {
-    //             $query->where(function ($q) use (&$search) {
-    //                 $q->where('item.CODE', 'like', '%' . $search . '%')
-    //                     ->orWhere('item.DESCRIPTION', 'like', '%' . $search . '%');
-    //             });
-    //         })
-    //         ->whereNotExists(function ($query) use (&$HEMO_ID) {
-    //             $query->select(DB::raw(1))
-    //                 ->from('hemodialysis_items as h')
-    //                 ->whereRaw('h.ITEM_ID = item.ID')
-    //                 ->where('h.IS_DEFAULT', 0)
-    //                 ->where('h.HEMO_ID', $HEMO_ID);
-    //         })
-    //         ->orderBy('DESCRIPTION', 'asc')
-    //         ->get();
+    public function getItemListBySubId(int $itemSubId, $search, int $HEMO_ID)
+    {
+        $data = Items::query()
+            ->select([
+                'ID',
+                'DESCRIPTION',
+                'RATE',
+            ])
+            ->where('INACTIVE', 0)
+            ->where('NON_HEMO', 0)
+            ->where('SUB_CLASS_ID', $itemSubId)
+            ->when($search, function ($query) use (&$search) {
+                $query->where(function ($q) use (&$search) {
+                    $q->where('item.CODE', 'like', '%' . $search . '%')
+                        ->orWhere('item.DESCRIPTION', 'like', '%' . $search . '%');
+                });
+            })
+            ->whereNotExists(function ($query) use (&$HEMO_ID) {
+                $query->select(DB::raw(1))
+                    ->from('hemodialysis_items as h')
+                    ->whereRaw('h.ITEM_ID = item.ID')
+                    ->where('h.IS_DEFAULT', 0)
+                    ->where('h.HEMO_ID', $HEMO_ID);
+            })
+            ->orderBy('DESCRIPTION', 'asc')
+            ->get();
 
-    //     return $data;
-    // }
+        return $data;
+    }
 
-  public function getItemListBySubId(int $itemSubId, $search, int $HEMO_ID)
-{
-    $today = now()->toDateString();
+//   public function getItemListBySubId(int $itemSubId, $search, int $HEMO_ID)
+// {
+//     $today = now()->toDateString();
 
-    $data = Items::query()
-        ->from('item')
-        ->select([
-            'ID',
-            'DESCRIPTION',
-            'RATE',
-        ])
-        ->selectSub(function ($query) use ($today, $HEMO_ID) {
-            $query->from('item_inventory')
-                ->select('item_inventory.ENDING_QUANTITY')
-                ->whereColumn('item_inventory.ITEM_ID', 'item.ID')
-                ->whereRaw('item_inventory.LOCATION_ID = (SELECT h.LOCATION_ID FROM hemodialysis h WHERE h.ID = ?)', [$HEMO_ID])
-                ->where('item_inventory.SOURCE_REF_DATE', '<=', $today)
-                ->orderBy('item_inventory.SOURCE_REF_DATE', 'desc')
-                ->orderBy('item_inventory.ID', 'desc')
-                ->limit(1);
-        }, 'QTY_ON_HAND')
-        ->where('INACTIVE', 0)
-        ->where('NON_HEMO', 0)
-        ->where('SUB_CLASS_ID', $itemSubId)
-        ->when($search, function ($query) use ($search) {
-            $query->where(function ($q) use ($search) {
-                $q->where('item.CODE', 'like', '%' . $search . '%')
-                    ->orWhere('item.DESCRIPTION', 'like', '%' . $search . '%');
-            });
-        })
-        ->whereNotExists(function ($query) use ($HEMO_ID) {
-            $query->select(DB::raw(1))
-                ->from('hemodialysis_items as h')
-                ->whereRaw('h.ITEM_ID = item.ID')
-                ->where('h.IS_DEFAULT', 0)
-                ->where('h.HEMO_ID', $HEMO_ID);
-        })
-        ->having('QTY_ON_HAND', '>', 0)
-        ->orderBy('DESCRIPTION', 'asc')
-        ->get();
+//     $data = Items::query()
+//         ->from('item')
+//         ->select([
+//             'ID',
+//             'DESCRIPTION',
+//             'RATE',
+//         ])
+//         ->selectSub(function ($query) use ($today, $HEMO_ID) {
+//             $query->from('item_inventory')
+//                 ->select('item_inventory.ENDING_QUANTITY')
+//                 ->whereColumn('item_inventory.ITEM_ID', 'item.ID')
+//                 ->whereRaw('item_inventory.LOCATION_ID = (SELECT h.LOCATION_ID FROM hemodialysis h WHERE h.ID = ?)', [$HEMO_ID])
+//                 ->where('item_inventory.SOURCE_REF_DATE', '<=', $today)
+//                 ->orderBy('item_inventory.SOURCE_REF_DATE', 'desc')
+//                 ->orderBy('item_inventory.ID', 'desc')
+//                 ->limit(1);
+//         }, 'QTY_ON_HAND')
+//         ->where('INACTIVE', 0)
+//         ->where('NON_HEMO', 0)
+//         ->where('SUB_CLASS_ID', $itemSubId)
+//         ->when($search, function ($query) use ($search) {
+//             $query->where(function ($q) use ($search) {
+//                 $q->where('item.CODE', 'like', '%' . $search . '%')
+//                     ->orWhere('item.DESCRIPTION', 'like', '%' . $search . '%');
+//             });
+//         })
+//         ->whereNotExists(function ($query) use ($HEMO_ID) {
+//             $query->select(DB::raw(1))
+//                 ->from('hemodialysis_items as h')
+//                 ->whereRaw('h.ITEM_ID = item.ID')
+//                 ->where('h.IS_DEFAULT', 0)
+//                 ->where('h.HEMO_ID', $HEMO_ID);
+//         })
+//         ->having('QTY_ON_HAND', '>', 0)
+//         ->orderBy('DESCRIPTION', 'asc')
+//         ->get();
 
-    return $data;
-}
+//     return $data;
+// }
     public function PriceLevelItemList($search, int $SUB_CLASS_ID, int $LOCATION_ID)
     {
 
