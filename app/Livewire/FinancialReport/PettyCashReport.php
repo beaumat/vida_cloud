@@ -8,7 +8,7 @@ use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Petty Cash Report')]
+#[Title('Balance Sheet Report')]
 class PettyCashReport extends Component
 {
     public bool $isDate = true;
@@ -50,11 +50,15 @@ class PettyCashReport extends Component
         $this->LOCATION_ID  = $this->userServices->getLocationDefault();
         $this->locationList = $this->locationServices->getList();
     }
-  
+    public function generateMonthly()
+    {
+        $this->isDate = false;
+        $this->dispatch('balance-sheet-monthly', result: ['YEAR' => $this->YEAR, 'LOCATION_ID' => $this->LOCATION_ID]);
+    }
     public function generate()
     {
         $this->isDate = true;
-        $this->dispatch('petty-cash-date-range', result: ['DATE_FROM' => $this->DATE_FROM, 'DATE_TO' => $this->DATE_TO, 'LOCATION_ID' => $this->LOCATION_ID]);
+        $this->dispatch('balance-sheet-date-range', result: ['DATE_FROM' => $this->DATE_FROM, 'DATE_TO' => $this->DATE_TO, 'LOCATION_ID' => $this->LOCATION_ID]);
     }
 
     public function exportDaily()

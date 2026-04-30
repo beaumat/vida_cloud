@@ -92,7 +92,7 @@
                                             </div>
                                             <div class=" col-12 col-sm-12 col-md-12  col-lg-6"
                                                 style="max-height: 80vh; overflow-y: auto;">
-                                                @livewire('BalanceSheet.BalanceSheetDateRange')
+                                                @livewire('balance-sheet.petty-cash-sheet-date-range')
                                             </div>
 
                                         </div>

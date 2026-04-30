@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h5 class="m-0">
-                        <a href="{{ route('reportsfinancialpetty_cash_report') }}"> Petty Cash Statement </a>
+                        <a href="{{ route('reportsfinancialpetty_cash_report') }}"> Petty Cash Report </a>
                     </h5>
                 </div>
                 <div class="col-sm-6">
@@ -92,7 +92,7 @@
                                             </div>
                                             <div class=" col-12 col-sm-12 col-md-12  col-lg-6"
                                                 style="max-height: 80vh; overflow-y: auto;">
-                                                @livewire('PettyCash.PettyCashDateRange')
+                                                @livewire('balance-sheet.petty-cash-date-range')
                                             </div>
 
                                         </div>
@@ -132,8 +132,8 @@
                                                                 <div class="form-group">
                                                                     <button class="btn btn-danger btn-xs"
                                                                         wire:click='generateMonthly()'>Generate</button>
-                                                                    {{-- <button class="btn btn-success btn-xs "
-                                                                        wire:click='exportMonthly()'>Export</button> --}}
+                                                                    <button class="btn btn-success btn-xs "
+                                                                        wire:click='exportMonthly()'>Export</button>
                                                                 </div>
                                                             </div>
                                                         </div>

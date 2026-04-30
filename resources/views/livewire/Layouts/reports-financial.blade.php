@@ -48,14 +48,14 @@ use App\Services\UserServices;
             </li>
         @endif
 
-         {{-- @if (UserServices::GetUserRightAccess('report.financial.petty-cash'))
+         @if (UserServices::GetUserRightAccess('report.pettycash.petty-cash'))
             <li class="nav-item">
                 <a href="{{ route('reportsfinancialpetty_cash_report') }}"
-                    class="nav-link {{ request()->is('reports/financial/petty-cash*') ? 'text-warning font-weight-bold' : '' }}">
+                    class="nav-link {{ request()->is('reports/pettycash/petty-cash-report*') ? 'text-warning font-weight-bold' : '' }}">
                     <i class="fa fa-print nav-icon"></i>
                     <p>Petty Cash</p>
                 </a>
             </li>
-        @endif --}}
+        @endif
     </ul>
 </li>

@@ -7,7 +7,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Title("Transaction Journal Viewer by Date-Range")]
-class PettyCashAccountSummary extends Component
+class PettyCashStatementAccountSummary extends Component
 {
 
 

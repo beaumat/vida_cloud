@@ -141,9 +141,9 @@
                                                 {{ $DATE_DISCHARGED ? \Carbon\Carbon::parse($DATE_DISCHARGED)->format('m/d/Y') : ' ' }}
                                             </span>
                                         </div>
-                                        <div class="col-12 text-left"
+                                        <div class="col-12 text-left" USER_CONTACT
                                             @if (!$OUTPUT_SIGN) style="opacity: 0.0" @endif>
-                                            CONTACT No. 0948-350-2140</div>
+                                            CONTACT No. {{ $USER_CONTACT }}</div>
                                     </div>
                                 </div>
                                 <div class="col-2"></div>
