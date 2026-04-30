@@ -57,7 +57,7 @@ use App\Livewire\Doctor\DoctorList;
 use App\Livewire\Employees\EmployeeForm;
 use App\Livewire\Employees\EmployeeList;
 use App\Livewire\FinancialReport\BalanceSheetReport;
-use App\Livewire\FinancialReport\PettyCashReport;
+//use App\Livewire\FinancialReport\PettyCashReport;
 use App\Livewire\FinancialReport\CashFlowReport;
 use App\Livewire\FinancialReport\EquityReport;
 use App\Livewire\FinancialReport\IncomeStatementReport;
@@ -795,11 +795,11 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/', EquityReport::class)->name('equity_report');
             });
 
-             Route::prefix('/pettycash')->middleware(['permission:report.pettycash.petty-cash'])->group(function () {
-                Route::get('/', PettyCashReport::class)->name('petty_cash_report');
+            //  Route::prefix('/pettycash')->middleware(['permission:report.pettycash.petty-cash'])->group(function () {
+            //     Route::get('/', PettyCashReport::class)->name('petty_cash_report');
                 
 
-            });
+            // });
 
         });
 
