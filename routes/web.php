@@ -80,7 +80,7 @@ use App\Livewire\Hemodialysis\PrintFormFrontBack;
 use App\Livewire\Import\XeroImportForm;
 use App\Livewire\IncomeStatement\IncomeStatementAccountDetails;
 use App\Livewire\IncomeStatement\IncomeStatementAccountSummary;
-use App\Livewire\IncomeStatement\PettyCashAccountSummary;
+//use App\Livewire\IncomeStatement\PettyCashAccountSummary;
 
 use App\Livewire\InventoryAdjustmentTypePage\InventoryAdjustmentTypeForm;
 use App\Livewire\InventoryAdjustmentTypePage\InventoryAdjustmentTypeList;
@@ -797,11 +797,11 @@ Route::middleware(['auth'])->group(function () {
                 Route::get('/', EquityReport::class)->name('equity_report');
             });
 
-             Route::prefix('/pettycash')->middleware(['permission:report.pettycash.petty-cash'])->group(function () {
-                Route::get('/', PettyCashReport::class)->name('petty_cash_report');
-                // Route::get('/details/{id}/{year}/{month}/{locationid}', IncomeStatementAccountDetails::class)->name('income_statement_report_account_viewer');
-                Route::get('/summary/{id}', PettyCashAccountSummary::class)->name('petty_cash_statement_account_summary');
-            });
+            //  Route::prefix('/pettycash')->middleware(['permission:report.pettycash.petty-cash'])->group(function () {
+            //     Route::get('/', PettyCashReport::class)->name('petty_cash_report');
+            //     // Route::get('/details/{id}/{year}/{month}/{locationid}', IncomeStatementAccountDetails::class)->name('income_statement_report_account_viewer');
+            //     Route::get('/summary/{id}', PettyCashAccountSummary::class)->name('petty_cash_statement_account_summary');
+            // });
 
         });
 
