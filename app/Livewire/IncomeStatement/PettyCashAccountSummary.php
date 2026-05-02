@@ -7,7 +7,7 @@ use Livewire\Attributes\Title;
 use Livewire\Component;
 
 #[Title("Transaction Journal Viewer by Date-Range")]
-class PettyCashStatementAccountSummary extends Component
+class PettyCashAccountSummary extends Component
 {
 
 
@@ -19,9 +19,9 @@ class PettyCashStatementAccountSummary extends Component
     {
         $this->accountJournalServices = $accountJournalServices;
     }
-    public function mount($id = null,  string $datefrom, string $dateto,int $locationid = 0)
+    public function mount($id = null)
     {   
-        $this->dataList = $this->accountJournalServices->getTransactionJournalViewerSummary($id, $datefrom, $dateto, $locationid);
+        $this->dataList = $this->accountJournalServices->getPettyCashDetailperID($id);
     }
     public function openDetails(int $JN)
     {
@@ -30,6 +30,6 @@ class PettyCashStatementAccountSummary extends Component
     }
     public function render()
     {
-        return view('livewire.income-statement.income-statement-account-summary');
+        return view('livewire.income-statement.petty-cash-statement-account-summary');
     }
 }

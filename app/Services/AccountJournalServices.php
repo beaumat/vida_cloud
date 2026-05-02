@@ -901,6 +901,29 @@ class AccountJournalServices
         return $result;
     }
 
+//petty cash details
+    public function getPettyCashDetailperID(string $billId)
+    {
+
+        $result = DB::table('bill_expenses as be')
+    ->select([
+        'be.ID',
+        'be.ACCOUNT_ID',
+        'be.AMOUNT',
+        'be.PARTICULARS',
+        'be.TAXABLE',
+        'be.CLASS_ID',
+        'a.NAME as ACCOUNT_TITLE',
+        'a.TAG as ACCOUNT_CODE',
+    ])
+    ->leftJoin('account as a', 'a.ID', '=', 'be.ACCOUNT_ID')
+    ->where('be.BILL_ID', $billId)
+    ->orderBy('be.LINE_NO', 'ASC')
+    ->get();
+
+        return $result;
+    }
+
     public function getTransactionJournal(string $dateFrom, string $dateTo, int $LOCATION_ID, array $account = [], array $accountType = [])
     {
 

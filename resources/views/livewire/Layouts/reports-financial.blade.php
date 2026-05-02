@@ -48,7 +48,7 @@ use App\Services\UserServices;
             </li>
         @endif
 
-         {{-- @if (UserServices::GetUserRightAccess('report.pettycash.petty-cash'))
+         @if (UserServices::GetUserRightAccess('report.pettycash.petty-cash'))
             <li class="nav-item">
                 <a href="{{ route('reportsfinancialpetty_cash_report') }}"
                     class="nav-link {{ request()->is('reports/pettycash/petty-cash-report*') ? 'text-warning font-weight-bold' : '' }}">
@@ -56,6 +56,6 @@ use App\Services\UserServices;
                     <p>Petty Cash</p>
                 </a>
             </li>
-        @endif --}}
+        @endif
     </ul>
 </li>

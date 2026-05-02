@@ -12,7 +12,7 @@ use Livewire\Component;
 use Maatwebsite\Excel\Facades\Excel;
 
 #[Title('Transaction Journal Report')]
-class TransactionJournalReport extends Component
+class TransactionPettyCashReport extends Component
 {
 
     public $TOTAL_DEBIT  = 0;
@@ -59,7 +59,7 @@ class TransactionJournalReport extends Component
     {
         $this->TOTAL_DEBIT  = 0;
         $this->TOTAL_CREDIT = 0;
-        $this->dataList     = $this->accountJournalServices->getPettyCashDetailperID($this->ID,);
+        $this->dataList     = $this->accountJournalServices->getTransactionJournal($this->DATE_FROM, $this->DATE_TO, $this->LOCATION_ID, $this->selectedAccount, $this->selectedAccountType);
     }
     public function updatedlocationid()
     {
