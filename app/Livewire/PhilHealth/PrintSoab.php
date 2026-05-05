@@ -55,6 +55,7 @@ class PrintSoab extends Component
     public int $NO_OF_TREATMENT;
     public string $allDate = '';
     public string $REPORT_HEADER_1;
+    public string $NAME_OF_BUSINESS;
     public string $REPORT_HEADER_2;
     public string $REPORT_HEADER_3;
     public string $LOGO_FILE;
@@ -134,6 +135,7 @@ class PrintSoab extends Component
 
             $locData = $this->locationServices->get($this->LOCATION_ID);
             if ($locData) {
+                 $this->NAME_OF_BUSINESS = $locData->NAME_OF_BUSINESS ?? '';
                 $this->REPORT_HEADER_1 = $locData->REPORT_HEADER_1 ?? '';
                 $this->REPORT_HEADER_2 = $locData->REPORT_HEADER_2 ?? '';
                 $this->REPORT_HEADER_3 = $locData->REPORT_HEADER_3 ?? '';
@@ -198,6 +200,7 @@ class PrintSoab extends Component
 
                 $locData = $this->locationServices->get($this->LOCATION_ID);
                 if ($locData) {
+                $this->NAME_OF_BUSINESS = $locData->NAME_OF_BUSINESS ?? '';
                     $this->REPORT_HEADER_1 = $locData->REPORT_HEADER_1 ?? '';
                     $this->REPORT_HEADER_2 = $locData->REPORT_HEADER_2 ?? '';
                     $this->REPORT_HEADER_3 = $locData->REPORT_HEADER_3 ?? '';
